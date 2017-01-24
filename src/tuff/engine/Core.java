@@ -5,10 +5,20 @@
  */
 package tuff.engine;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author gvpm
  */
 public class Core {
+    
+    ArrayList<Vehicle> vehicles;
+    ArrayList<Profile> profiles;
+    
+    Grid grid;
+    
+    String model;
+    
     
 }
