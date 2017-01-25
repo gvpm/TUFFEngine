@@ -22,8 +22,9 @@ public class SimulationParameters {
     int cellsInY;
     float cellSize;
     int defaultCarSize;
+    String model;
 
-    public SimulationParameters(int speedLimit, float probP, int simulationTime, int discardTime, int statisticTime, float initialDensity, float deltaDendity, float finalDensity, int cellsInX, int cellsInY, float cellSize, int defaultCarSize) {
+    public SimulationParameters(int speedLimit, float probP, int simulationTime, int discardTime, int statisticTime, float initialDensity, float deltaDendity, float finalDensity, int cellsInX, int cellsInY, float cellSize, int defaultCarSize, String model) {
         this.speedLimit = speedLimit;
         this.probP = probP;
         this.simulationTime = simulationTime;
@@ -36,6 +37,7 @@ public class SimulationParameters {
         this.cellsInY = cellsInY;
         this.cellSize = cellSize;
         this.defaultCarSize = defaultCarSize;
+        this.model = model;
     }
 
     public int getSpeedLimit() {

@@ -18,7 +18,7 @@ public class Core {
     
     Grid grid;
     
-    String model;
+    Model model;
     
     
 }
