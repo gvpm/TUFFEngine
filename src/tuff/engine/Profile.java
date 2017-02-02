@@ -18,13 +18,13 @@ public class Profile {
     int ahead;
     int safeDistance;
     int velIncrement;
-    int percentageOccurrence;
+    float percentageOccurrence;
     float alphaAcc;
     float betaAcc;
     float alphaAnt;
     float betaAnt;
 
-    public Profile(FDPProvider fdpProvider, String name, int size, int velMax, int ahead, int safeDistance, int velIncrement, int percentageOccurrence, float alphaAcc, float betaAcc, float alphaAnt, float betaAnt) {
+    public Profile(FDPProvider fdpProvider, String name, int size, int velMax, int ahead, int safeDistance, int velIncrement, float percentageOccurrence, float alphaAcc, float betaAcc, float alphaAnt, float betaAnt) {
         this.fdpProvider = fdpProvider;
         this.name = name;
         this.size = size;
@@ -37,6 +37,10 @@ public class Profile {
         this.betaAcc = betaAcc;
         this.alphaAnt = alphaAnt;
         this.betaAnt = betaAnt;
+    }
+
+    Profile() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public FDPProvider getFdpProvider() {
@@ -95,7 +99,7 @@ public class Profile {
         this.velIncrement = velIncrement;
     }
 
-    public int getPercentageOccurrence() {
+    public float getPercentageOccurrence() {
         return percentageOccurrence;
     }
 

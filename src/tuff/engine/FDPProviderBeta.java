@@ -11,4 +11,10 @@ package tuff.engine;
  */
 public class FDPProviderBeta extends FDPProvider {
     
+    @Override
+    public float provide(float a, float b){
+        
+        return 1;
+    }
+    
 }

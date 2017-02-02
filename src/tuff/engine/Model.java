@@ -10,5 +10,12 @@ package tuff.engine;
  * @author gvpm
  */
 public abstract class Model {
+
+    public Model() {
+    }
+    
+    
+    
+    public abstract void apply(Vehicle vehicle);
     
 }

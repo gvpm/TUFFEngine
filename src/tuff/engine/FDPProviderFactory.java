@@ -11,4 +11,21 @@ package tuff.engine;
  */
 public class FDPProviderFactory {
     
+    
+    public FDPProvider fabricate(int n) {
+
+        switch (n) {
+
+            case 1:
+                return new FDPProviderNormal();
+
+            case 2:
+                return new FDPProviderBeta();
+            default:
+                throw new UnsupportedOperationException("FDPProvider not supported"); //To change body of generated methods, choose Tools | Templates.
+
+        }
+
+    }
+    
 }

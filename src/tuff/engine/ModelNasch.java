@@ -9,6 +9,12 @@ package tuff.engine;
  *
  * @author gvpm
  */
-public class ModelNasch {
+public class ModelNasch extends Model{
+    
+
+    @Override
+    public void apply(Vehicle vehicle) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
