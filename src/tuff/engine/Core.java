@@ -30,19 +30,49 @@ public class Core {
 
     public void init() {
         ModelFactory modelFactory = new ModelFactory();
-        Model model = modelFactory.fabricate(parameters.getModel());
+        model = modelFactory.fabricate(parameters.getModel());
 
         createGrid();
 
     }
 
     public void simulateAllDensities() {
+        float density = parameters.getInitialDensity();
+        float deltaDensity = parameters.getDeltaDensity();
+        float finalDensity = parameters.getFinalDensity();
+        while(density<finalDensity){
+            
+            simulateDensity(density);
+            
+            density = density+deltaDensity;
+        }
+        
+        
 
     }
 
-    public void simulateDensity(double d) {
+    public void simulateDensity(float d) {
         setInitialCondition(d);
+        int simulationTime = parameters.getSimulationTime();
+        for (int i = 0; i < simulationTime; i++) {
+            iterate();         
+        }
+        
 
+    }
+    
+    public void iterate(){
+        for (int i = 0; i < vehicles.size(); i++) {
+            model.apply(vehicles.get(i));
+            
+        }
+        update();
+        
+    }
+    
+    public void update(){
+        grid.updateVehiclesOnGrid(vehicles);
+        
     }
 
     //will create the grid with the parameters
@@ -54,7 +84,7 @@ public class Core {
 
     //will set the inicial condition according to the inicial density and  will create a number of cars of
     //each profile according to the given occurence.
-    private void setInitialCondition(double d) {
+    private void setInitialCondition(float d) {
         //clears the vehicles array
         vehicles.clear();
         //clears the gris positions
@@ -72,7 +102,7 @@ public class Core {
             //number of cars according to the occurence and, the cells to ocupy and the size of that  profile.
             int numberOfCars = (int) (((int) (occupiedCells * occurrence)) / profiles.get(i).getSize());
             System.out.println("\nProfile: " + profiles.get(i).toString());
-            System.out.println("Cars in this simulation: " + numberOfCars + "\n");
+            System.out.println("Cars in this simulation: " + numberOfCars );
             nOfProfileCars[i] = numberOfCars;
             totalCarsToInit += numberOfCars;
 
@@ -92,7 +122,7 @@ public class Core {
 
         }
 
-        System.out.println("Total Vehicles Loaded: " + vehicles.size());
+        System.out.println("\nTotal Vehicles Loaded: " + vehicles.size());
 
         //set the cars neighbours
         setNeighbours();

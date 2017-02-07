@@ -5,6 +5,8 @@
  */
 package tuff.engine;
 
+import java.util.Random;
+
 /**
  *
  * @author gvpm
@@ -12,9 +14,11 @@ package tuff.engine;
 public class FDPProviderNormal extends FDPProvider {
     
     @Override
-    public float provide(float a){
+    public boolean provide(int a){
+        Random rand = new Random();
+        int p = rand.nextInt(100);
         
-        return 1;
+        return p<a;
     }
     
 }

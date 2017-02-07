@@ -30,7 +30,7 @@ public class ConsoleApp {
         core.createProfile(fdpFactory.fabricate(1), "Basic2", 5, 5, 0, 0, 1, 0.5, 0, 0, 0, 0);
         
         core.init();
-        core.simulateDensity(0.53);
+        core.simulateAllDensities();
     
     }
     

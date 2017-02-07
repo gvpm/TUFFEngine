@@ -11,10 +11,28 @@ package tuff.engine;
  */
 public class ModelNasch extends Model{
     
-
-    @Override
+    
+        @Override
     public void apply(Vehicle vehicle) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     
+        
+        
     }
+
+//    @Override
+//    public void apply(Vehicle vehicle) {
+//        
+//        int distanceToFront;
+//        int newVel;
+//        int acceleration = vehicle.getAcceleration();
+//        
+//        int currentVel = vehicle.getVelocity();
+//        
+//        //calculate space between vehicles
+//        //distanceToFront = vehicle.getDistanceToFront();
+//        
+//        
+//        
+//    }
     
 }

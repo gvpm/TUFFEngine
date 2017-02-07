@@ -35,10 +35,15 @@ public class Grid {
         init();
     }
 
+    public void updateVehiclesOnGrid(ArrayList<Vehicle> vehicles) {
+        //updates all the vehicles on the gris, making them move acording to new velocity and
+        //updating old velocities and checking if there is conflicts.
+    }
+    
     public void placeVehiclesOnGrid(ArrayList<Vehicle> vehicles) {
-        System.out.println(grid.length);
+        
         int xPosition = grid.length - 1;
-        System.out.println(xPosition);
+        
         for (int i = vehicles.size() - 1; i >= 0; i--) {
             Vehicle v = vehicles.get(i);
             v.setGridXPosition(xPosition);

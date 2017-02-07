@@ -21,6 +21,10 @@ public class Vehicle {
     int oldGridYPosition;
     int newGridXPosition;
     int newGridYPosition;
+    int velocity;
+    int newVelocity;
+    int oldVelocity;
+    
     Vehicle frontNeighbour;
     Vehicle backNeighbour;
 
@@ -29,10 +33,12 @@ public class Vehicle {
         this.core = core;
         this.profile = profile;
         this.id = id;
+        this.velocity=0;
     }
     public Vehicle(Grid grid, Core core) {
         this.grid = grid;
         this.core = core;
+        this.velocity=0;
         
     }
 
@@ -138,6 +144,58 @@ public class Vehicle {
     public void setBackNeighbour(Vehicle backNeighbour) {
         this.backNeighbour = backNeighbour;
     }
+
+    public int getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
+    }
+
+    public int getNewVelocity() {
+        return newVelocity;
+    }
+
+    public void setNewVelocity(int newVelocity) {
+        this.newVelocity = newVelocity;
+    }
+
+    public int getOldVelocity() {
+        return oldVelocity;
+    }
+
+    public void setOldVelocity(int oldVelocity) {
+        this.oldVelocity = oldVelocity;
+    }
+    public int getAcceleration(){
+        return getProfile().getVelIncrement();
+        
+    }
+    public int getSize(){
+        return getProfile().getSize();
+        
+    }
+    
+    
+    public int getDistanceToFront(){
+        int myX = this.getGridXPosition();
+        int nextCarX = this.getFrontNeighbour().getGridXPosition();
+        int nextCarSize = this.getFrontNeighbour().getSize();
+        int distance;
+        //case where car in front is still in front of me in the grid
+        if(nextCarX>myX){
+            distance = nextCarX-nextCarSize-myX;
+        //case where car in front reached the end and went to begining of grid and I didnt    
+        }else{
+            //missing
+            
+        }
+        
+        
+        return 1;
+    }
+    
     
     
     

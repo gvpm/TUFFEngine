@@ -12,8 +12,8 @@ package tuff.engine;
 public abstract class FDPProvider {
     
     
-    public float provide(float a){
-        return 1;
+    public boolean provide(int a){
+        return false;
     }
     
     public float provide(float a, float b){

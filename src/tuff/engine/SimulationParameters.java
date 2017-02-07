@@ -16,7 +16,7 @@ public class SimulationParameters {
     int discardTime;
     int statisticTime;
     float initialDensity;
-    float deltaDendity;
+    float deltaDensity;
     float finalDensity;
     int cellsInX;
     int cellsInY;
@@ -31,7 +31,7 @@ public class SimulationParameters {
         this.discardTime = discardTime;
         this.statisticTime = statisticTime;
         this.initialDensity = initialDensity;
-        this.deltaDendity = deltaDendity;
+        this.deltaDensity = deltaDendity;
         this.finalDensity = finalDensity;
         this.cellsInX = cellsInX;
         this.cellsInY = cellsInY;
@@ -97,12 +97,12 @@ public class SimulationParameters {
         this.initialDensity = initialDensity;
     }
 
-    public float getDeltaDendity() {
-        return deltaDendity;
+    public float getDeltaDensity() {
+        return deltaDensity;
     }
 
-    public void setDeltaDendity(float deltaDendity) {
-        this.deltaDendity = deltaDendity;
+    public void setDeltaDensity(float deltaDensity) {
+        this.deltaDensity = deltaDensity;
     }
 
     public float getFinalDensity() {
