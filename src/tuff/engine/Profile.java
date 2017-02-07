@@ -18,13 +18,13 @@ public class Profile {
     int ahead;
     int safeDistance;
     int velIncrement;
-    float percentageOccurrence;
+    double percentageOccurrence;
     float alphaAcc;
     float betaAcc;
     float alphaAnt;
     float betaAnt;
 
-    public Profile(FDPProvider fdpProvider, String name, int size, int velMax, int ahead, int safeDistance, int velIncrement, float percentageOccurrence, float alphaAcc, float betaAcc, float alphaAnt, float betaAnt) {
+    public Profile(FDPProvider fdpProvider, String name, int size, int velMax, int ahead, int safeDistance, int velIncrement, double percentageOccurrence, float alphaAcc, float betaAcc, float alphaAnt, float betaAnt) {
         this.fdpProvider = fdpProvider;
         this.name = name;
         this.size = size;
@@ -99,7 +99,7 @@ public class Profile {
         this.velIncrement = velIncrement;
     }
 
-    public float getPercentageOccurrence() {
+    public double getPercentageOccurrence() {
         return percentageOccurrence;
     }
 
@@ -137,6 +137,11 @@ public class Profile {
 
     public void setBetaAnt(float betaAnt) {
         this.betaAnt = betaAnt;
+    }
+    @Override
+    public String toString(){
+        
+        return getName()+" Occurrence: "+getPercentageOccurrence()+ " Size: "+getSize();
     }
     
     

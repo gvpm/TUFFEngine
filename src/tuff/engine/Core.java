@@ -6,19 +6,20 @@
 package tuff.engine;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
  * @author gvpm
  */
 public class Core {
-    
+
     ArrayList<Vehicle> vehicles;
     ArrayList<Profile> profiles;
-    
+
     Grid grid;
     SimulationParameters parameters;
-    
+
     Model model;
 
     public Core(SimulationParameters parameters) {
@@ -26,34 +27,107 @@ public class Core {
         profiles = new ArrayList<>();
         vehicles = new ArrayList<>();
     }
-    
-    
-    public void init(){
+
+    public void init() {
         ModelFactory modelFactory = new ModelFactory();
         Model model = modelFactory.fabricate(parameters.getModel());
-        
+
         createGrid();
-        setInitialCondition();
-        
+
     }
+
+    public void simulateAllDensities() {
+
+    }
+
+    public void simulateDensity(double d) {
+        setInitialCondition(d);
+
+    }
+
     //will create the grid with the parameters
     private void createGrid() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        grid = new Grid(parameters.getCellsInX());
+        grid.init();
+
     }
+
     //will set the inicial condition according to the inicial density and  will create a number of cars of
     //each profile according to the given occurence.
-    private void setInitialCondition() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void setInitialCondition(double d) {
+        //clears the vehicles array
+        vehicles.clear();
+        //clears the gris positions
+        grid.init();
+        //number of cells that will be occupied in this density
+        int occupiedCells = (int) (parameters.getCellsInX() * d);
+        System.out.println("Density: " + d + " Occupied Cells: " + occupiedCells + " out of " + parameters.getCellsInX());
+        //will store here the numberof cars in this density or each profile
+        int[] nOfProfileCars = new int[profiles.size()];
+        int totalCarsToInit = 0;
+        //will loop in each profile type
+        for (int i = 0; i < profiles.size(); i++) {
+            //the set occurence for that type
+            double occurrence = profiles.get(i).getPercentageOccurrence();
+            //number of cars according to the occurence and, the cells to ocupy and the size of that  profile.
+            int numberOfCars = (int) (((int) (occupiedCells * occurrence)) / profiles.get(i).getSize());
+            System.out.println("\nProfile: " + profiles.get(i).toString());
+            System.out.println("Cars in this simulation: " + numberOfCars + "\n");
+            nOfProfileCars[i] = numberOfCars;
+            totalCarsToInit += numberOfCars;
+
+        }
+        //Creates cars mixing the profiles
+        int idCount = 0;
+        //stops when there is the total numbers of cars for each profile
+        while (vehicles.size() < totalCarsToInit) {
+            Random rand = new Random();
+            int p = rand.nextInt(2);
+            if (nOfProfileCars[p] > 0) {
+                vehicles.add(new Vehicle(grid, this, profiles.get(p), idCount));
+                nOfProfileCars[p]--;
+                idCount++;
+
+            }
+
+        }
+
+        System.out.println("Total Vehicles Loaded: " + vehicles.size());
+
+        //set the cars neighbours
+        setNeighbours();
+        grid.placeVehiclesOnGrid(vehicles);
+        
+        //grid.printGrid();
+
     }
-    
-    public Profile createProfile(FDPProvider fdpProvider, String name, int size, int velMax, int ahead, int safeDistance, int velIncrement, int percentageOccurrence, float alphaAcc, float betaAcc, float alphaAnt, float betaAnt) {
+
+    //set the neighbours in a circular way
+    public void setNeighbours() {
+        for (int i = 0; i < vehicles.size(); i++) {
+            //case when its the first vehicle
+            if (i == 0) {
+                vehicles.get(i).setBackNeighbour(vehicles.get(vehicles.size() - 1));
+                vehicles.get(i).setFrontNeighbour(vehicles.get(i + 1));
+            //case when its the last vehicle    
+            } else if (i == vehicles.size() - 1) {
+                vehicles.get(i).setBackNeighbour(vehicles.get(i - 1));
+                vehicles.get(i).setFrontNeighbour(vehicles.get(0));
+                //case when its a normal vehicle in the middle
+            } else {
+                vehicles.get(i).setBackNeighbour(vehicles.get(i - 1));
+                vehicles.get(i).setFrontNeighbour(vehicles.get(i + 1));
+
+            }
+
+        }
+
+    }
+
+    public Profile createProfile(FDPProvider fdpProvider, String name, int size, int velMax, int ahead, int safeDistance, int velIncrement, double percentageOccurrence, float alphaAcc, float betaAcc, float alphaAnt, float betaAnt) {
         Profile newProfile = new Profile(fdpProvider, name, size, velMax, ahead, safeDistance, velIncrement, percentageOccurrence, alphaAcc, betaAcc, alphaAnt, betaAnt);
         profiles.add(newProfile);
         return newProfile;
     }
-    
-    
-    
-    
-    
+
 }

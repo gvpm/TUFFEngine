@@ -21,12 +21,21 @@ public class Vehicle {
     int oldGridYPosition;
     int newGridXPosition;
     int newGridYPosition;
+    Vehicle frontNeighbour;
+    Vehicle backNeighbour;
 
-    public Vehicle(Grid grid, Core core, Profile profile) {
+    public Vehicle(Grid grid, Core core, Profile profile,int id) {
         this.grid = grid;
         this.core = core;
         this.profile = profile;
+        this.id = id;
     }
+    public Vehicle(Grid grid, Core core) {
+        this.grid = grid;
+        this.core = core;
+        
+    }
+
 
     public Grid getGrid() {
         return grid;
@@ -107,6 +116,30 @@ public class Vehicle {
     public void setNewGridYPosition(int newGridYPosition) {
         this.newGridYPosition = newGridYPosition;
     }
+    
+    @Override
+    public String toString(){
+        return ""+getId();
+        
+    }
+
+    public Vehicle getFrontNeighbour() {
+        return frontNeighbour;
+    }
+
+    public void setFrontNeighbour(Vehicle frontNeighbour) {
+        this.frontNeighbour = frontNeighbour;
+    }
+
+    public Vehicle getBackNeighbour() {
+        return backNeighbour;
+    }
+
+    public void setBackNeighbour(Vehicle backNeighbour) {
+        this.backNeighbour = backNeighbour;
+    }
+    
+    
     
     
     

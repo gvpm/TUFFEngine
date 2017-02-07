@@ -26,9 +26,11 @@ public class ConsoleApp {
         
         FDPProviderFactory  fdpFactory =  new FDPProviderFactory();
 
-        core.createProfile(fdpFactory.fabricate(1), "Basic", 1, 5, 0, 0, 1, 1, 0, 0, 0, 0);
+        core.createProfile(fdpFactory.fabricate(1), "Basic1", 5, 5, 0, 0, 1, 0.5, 0, 0, 0, 0);
+        core.createProfile(fdpFactory.fabricate(1), "Basic2", 5, 5, 0, 0, 1, 0.5, 0, 0, 0, 0);
         
         core.init();
+        core.simulateDensity(0.53);
     
     }
     
