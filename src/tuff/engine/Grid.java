@@ -20,14 +20,29 @@ public class Grid {
         grid = new int[size];
 
     }
-
     //puts 0 in all positions of the grid
     public void init() {
         for (int i = 0; i < grid.length; i++) {
             grid[i] = -1;
-
         }
 
+    }
+    public int getFromPosition(int i){
+        return grid[i];
+    }
+    public int getNextXPosition(int i){
+        if(i==grid.length-1){
+            return 0;
+        }else{
+            return i+1;
+        } 
+    }
+     public int getPreviousXPosition(int i){
+        if(i==0){
+            return grid.length-1;
+        }else{
+            return i-1;
+        } 
     }
 
     public void clear() {
@@ -57,6 +72,11 @@ public class Grid {
 
     }
 
+        
+    public int[] getGrid(){
+        return grid;
+    }
+    
     public void printGrid() {
         System.out.println("Grid");
         for (int i = grid.length-1; i >=0; i--) {

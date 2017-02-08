@@ -26,8 +26,10 @@ public class ConsoleApp {
         
         FDPProviderFactory  fdpFactory =  new FDPProviderFactory();
 
-        core.createProfile(fdpFactory.fabricate(1), "Basic1", 5, 5, 0, 0, 1, 0.5, 0, 0, 0, 0);
-        core.createProfile(fdpFactory.fabricate(1), "Basic2", 5, 5, 0, 0, 1, 0.5, 0, 0, 0, 0);
+        //FDPProvider fdpProvider, String name, int size, int velMax, int ahead, int safeDistance, int velIncrement, double percentageOccurrence, float alphaAcc, float betaAcc, float alphaAnt, float betaAnt) {
+
+        core.createProfile(fdpFactory.fabricate(1), "Basic1", 5, 25, 0, 0, 3, 0.5, 0, 0, 0, 0);
+        core.createProfile(fdpFactory.fabricate(1), "Basic2", 5, 25, 0, 0, 3, 0.5, 0, 0, 0, 0);
         
         core.init();
         core.simulateAllDensities();

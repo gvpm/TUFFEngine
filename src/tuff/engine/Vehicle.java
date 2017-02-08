@@ -179,21 +179,39 @@ public class Vehicle {
     
     
     public int getDistanceToFront(){
-        int myX = this.getGridXPosition();
-        int nextCarX = this.getFrontNeighbour().getGridXPosition();
-        int nextCarSize = this.getFrontNeighbour().getSize();
-        int distance;
-        //case where car in front is still in front of me in the grid
-        if(nextCarX>myX){
-            distance = nextCarX-nextCarSize-myX;
-        //case where car in front reached the end and went to begining of grid and I didnt    
-        }else{
-            //missing
-            
+        int pointer = grid.getNextXPosition(this.getGridXPosition());
+      
+       
+        int distance=0;
+        //looks at front, cell by cell until it finds something in front
+        while(grid.getFromPosition(pointer)==-1){
+            pointer = grid.getNextXPosition(pointer);
+            distance++;
         }
         
         
-        return 1;
+        
+        return distance;
+    }
+    
+    public int getVelMax(){
+        return profile.getVelMax();
+        
+    }
+    
+    //after grid is updated, vehicle updates itself to next step
+    public void updateInfo(){
+//        if(getId()==4 && newGridXPosition!=gridXPosition){
+//            System.out.print(" "+ gridXPosition);
+//        }
+        
+        oldGridXPosition = gridXPosition;
+        oldGridYPosition = gridYPosition;
+        gridXPosition = newGridXPosition;
+        gridYPosition = newGridYPosition;
+        oldVelocity = velocity;
+        velocity = newVelocity;
+ 
     }
     
     

@@ -40,39 +40,57 @@ public class Core {
         float density = parameters.getInitialDensity();
         float deltaDensity = parameters.getDeltaDensity();
         float finalDensity = parameters.getFinalDensity();
-        while(density<finalDensity){
-            
+        while (density < finalDensity) {
+
             simulateDensity(density);
-            
-            density = density+deltaDensity;
+
+            density = density + deltaDensity;
         }
-        
-        
 
     }
 
     public void simulateDensity(float d) {
         setInitialCondition(d);
         int simulationTime = parameters.getSimulationTime();
+        System.out.println("|---------|");
+        System.out.print("|");
         for (int i = 0; i < simulationTime; i++) {
-            iterate();         
+            if ((i == (simulationTime / 10)) || (i == (simulationTime / 20)) || (i == (simulationTime / 30))||(i == (simulationTime / 40)) || (i == (simulationTime / 50)) || (i == (simulationTime / 60))||(i == (simulationTime / 70)) || (i == (simulationTime / 80)) || (i == (simulationTime / 90))) {
+                System.out.print("-");
+            }
+            iterate();
         }
-        
+        System.out.print("|");
+        System.out.println("");
 
     }
-    
-    public void iterate(){
+
+    public void iterate() {
+//        try {
+//            Thread.sleep(1);
+//        } catch (Exception e) {
+//            
+//        }
+       
         for (int i = 0; i < vehicles.size(); i++) {
+            //System.out.print(i);
+//            if(i==vehicles.size()-1&&(vehicles.get(0).getDistanceToFront()!=0)){
+//                System.out.print(" "+vehicles.get(0).getDistanceToFront());
+//            }
             model.apply(vehicles.get(i));
-            
+
         }
         update();
-        
+
     }
-    
-    public void update(){
+
+    public void update() {
         grid.updateVehiclesOnGrid(vehicles);
-        
+        for (int i = 0; i < vehicles.size(); i++) {
+            vehicles.get(i).updateInfo();
+            
+        }
+
     }
 
     //will create the grid with the parameters
@@ -91,6 +109,7 @@ public class Core {
         grid.init();
         //number of cells that will be occupied in this density
         int occupiedCells = (int) (parameters.getCellsInX() * d);
+        System.out.println("\n-----------------------------------------------------------------------------------------");
         System.out.println("Density: " + d + " Occupied Cells: " + occupiedCells + " out of " + parameters.getCellsInX());
         //will store here the numberof cars in this density or each profile
         int[] nOfProfileCars = new int[profiles.size()];
@@ -102,7 +121,7 @@ public class Core {
             //number of cars according to the occurence and, the cells to ocupy and the size of that  profile.
             int numberOfCars = (int) (((int) (occupiedCells * occurrence)) / profiles.get(i).getSize());
             System.out.println("\nProfile: " + profiles.get(i).toString());
-            System.out.println("Cars in this simulation: " + numberOfCars );
+            System.out.println("Cars in this simulation: " + numberOfCars);
             nOfProfileCars[i] = numberOfCars;
             totalCarsToInit += numberOfCars;
 
@@ -127,9 +146,8 @@ public class Core {
         //set the cars neighbours
         setNeighbours();
         grid.placeVehiclesOnGrid(vehicles);
-        
-        //grid.printGrid();
 
+        //grid.printGrid();
     }
 
     //set the neighbours in a circular way
@@ -139,7 +157,7 @@ public class Core {
             if (i == 0) {
                 vehicles.get(i).setBackNeighbour(vehicles.get(vehicles.size() - 1));
                 vehicles.get(i).setFrontNeighbour(vehicles.get(i + 1));
-            //case when its the last vehicle    
+                //case when its the last vehicle    
             } else if (i == vehicles.size() - 1) {
                 vehicles.get(i).setBackNeighbour(vehicles.get(i - 1));
                 vehicles.get(i).setFrontNeighbour(vehicles.get(0));
