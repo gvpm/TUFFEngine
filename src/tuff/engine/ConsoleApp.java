@@ -22,7 +22,7 @@ public class ConsoleApp {
         //Model model = modelFactory.fabricate("nasch");
         //public SimulationParameters(int speedLimit, float probP, int simulationTime, int discardTime, int statisticTime, float initialDensity, float deltaDendity, float finalDensity, int cellsInX, int cellsInY, float cellSize, float defaultCarSize, String model) {
 
-        SimulationParameters parameters = new SimulationParameters(25, 35, 15000, 10000, 121, (float) 0.05, (float) 0.01, (float) 0.9, 10000, 1, (float)1.5, (float) 7.5, "nasch");
+        SimulationParameters parameters = new SimulationParameters(25, 35, 15000, 10000, 121, (float) 0.01, (float) 0.01, (float) 0.9, 10000, 1, (float)1.5, (float) 7.5, "nasch");
         
         Core core = new Core(parameters);
         

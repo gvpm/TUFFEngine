@@ -25,6 +25,8 @@ public class Core {
 
     Model model;
     DataExtractor dataExtractor;
+    
+    Logger logger;
     //----------------------------LOG
     FileWriter arq = null;
     PrintWriter gravarArq;
@@ -35,6 +37,7 @@ public class Core {
         profiles = new ArrayList<>();
         vehicles = new ArrayList<>();
         dataExtractor = new DataExtractor(this);
+        logger = new Logger("plotar");
     }
 
     public void init() {
@@ -42,20 +45,7 @@ public class Core {
         model = modelFactory.fabricate(parameters.getModel());
 
         createGrid();
-        
-        //--------------------------------------------------------LOG
-        
-        try {
-            arq = new FileWriter("FD.txt");
 
-        } catch (IOException ex) {
-
-
-        }
-        gravarArq = new PrintWriter(arq);
-        
-
-//--------------------------------------------------------
 
     }
 
@@ -69,8 +59,10 @@ public class Core {
 
             density = density + deltaDensity;
         }
+        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.println("Simulation Ended");
         //-------------------------------LOG
-        gravarArq.close();
+        logger.closeLogger();
         //-------------------------------
 
     }
@@ -78,33 +70,32 @@ public class Core {
     public void simulateDensity(float d) {
         setInitialCondition(d);
         int simulationTime = parameters.getSimulationTime();
-//        System.out.println("|---------|");
+        System.out.println("|---------|");
 //        System.out.print("|");
         int statisticTime = parameters.getStatisticTime();
         int discardTime = parameters.getDiscardTime();
         int logTimeCounter = 0;
         
-                    
-            
 
-        
-        
-        
+        float lastPrinted = 0;
         for (int i = 0; i < simulationTime; i++) {
-
+//            int percentage = (int)(((float)i/(float)simulationTime)*(float)100);
+//            if((lastPrinted != percentage)&&percentage%10==0){
+//                //System.out.print(" "+percentage);
+//                System.out.print("-");
+//                lastPrinted = percentage;
+//            }
+            iterate();
             //case to log
             if((logTimeCounter == statisticTime)&&(simulationTime>discardTime)){
                 
-                System.out.println("Flow: "+dataExtractor.getFlow(d*100));
-                //---------------------------------------------------LOG
-                 gravarArq.println(dataExtractor.getFlow(d*100)+" "+d*100);
-                 gravarArq.flush();
-                 //---------------------------------------------------
+                logger.logALine(dataExtractor.getFlow(d*100), d*100);
+
                 logTimeCounter = 0;
             }
             logTimeCounter++;
             
-            iterate();
+            
         }
         
         
