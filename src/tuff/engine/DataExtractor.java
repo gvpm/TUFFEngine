@@ -5,10 +5,36 @@
  */
 package tuff.engine;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author gvpm
  */
 public class DataExtractor {
+    
+    Core core;
+
+    public DataExtractor(Core core) {
+        this.core = core;
+    }
+    
+    public float getFlow(float density){
+    
+        return density*getAvgVel();
+    }
+    
+    public float getAvgVel(){
+        int numOfVehicles = core.getVehicles().size();
+        float sum=0;
+        for (int i = 0; i < numOfVehicles; i++) {
+            sum +=core.getVehicles().get(i).getVelocity();
+            
+        }
+
+        return sum/numOfVehicles;
+    }
+    
+    
     
 }

@@ -21,11 +21,13 @@ public class Core {
     SimulationParameters parameters;
 
     Model model;
+    DataExtractor dataExtractor;
 
     public Core(SimulationParameters parameters) {
         this.parameters = parameters;
         profiles = new ArrayList<>();
         vehicles = new ArrayList<>();
+        dataExtractor = new DataExtractor(this);
     }
 
     public void init() {
@@ -52,12 +54,23 @@ public class Core {
     public void simulateDensity(float d) {
         setInitialCondition(d);
         int simulationTime = parameters.getSimulationTime();
-        System.out.println("|---------|");
-        System.out.print("|");
+//        System.out.println("|---------|");
+//        System.out.print("|");
+        int statisticTime = parameters.getStatisticTime();
+        int discardTime = parameters.getDiscardTime();
+        int logTimeCounter = 0;
         for (int i = 0; i < simulationTime; i++) {
-            if ((i == (simulationTime / 10)) || (i == (simulationTime / 20)) || (i == (simulationTime / 30))||(i == (simulationTime / 40)) || (i == (simulationTime / 50)) || (i == (simulationTime / 60))||(i == (simulationTime / 70)) || (i == (simulationTime / 80)) || (i == (simulationTime / 90))) {
-                System.out.print("-");
+//            if ((i == (simulationTime / 10)) || (i == (simulationTime / 20)) || (i == (simulationTime / 30))||(i == (simulationTime / 40)) || (i == (simulationTime / 50)) || (i == (simulationTime / 60))||(i == (simulationTime / 70)) || (i == (simulationTime / 80)) || (i == (simulationTime / 90))) {
+//                System.out.print("-");
+//            }
+            //IF to get the log
+            if((logTimeCounter == statisticTime)&&(simulationTime>discardTime)){
+                
+                System.out.println("Flow: "+dataExtractor.getFlow(d));
+                
+                logTimeCounter = 0;
             }
+            logTimeCounter++;
             
             iterate();
         }
@@ -67,17 +80,9 @@ public class Core {
     }
 
     public void iterate() {
-//        try {
-//            Thread.sleep(1);
-//        } catch (Exception e) {
-//            
-//        }
-       
+
         for (int i = 0; i < vehicles.size(); i++) {
-            //System.out.print(i);
-//            if(i==vehicles.size()-1&&(vehicles.get(0).getDistanceToFront()!=0)){
-//                System.out.print(" "+vehicles.get(0).getDistanceToFront());
-//            }
+
             model.apply(vehicles.get(i));
 
         }
@@ -187,5 +192,14 @@ public class Core {
         profiles.add(newProfile);
         return newProfile;
     }
+
+    public ArrayList<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public SimulationParameters getParameters() {
+        return parameters;
+    }
+    
 
 }

@@ -34,6 +34,7 @@ public class ModelNasch extends Model{
         
         if(vehicle.getProfile().getFdpProvider().provide(30)){
             newVel = max(newVel-acceleration,0);
+            
         }
         vehicle.setNewVelocity(newVel);
         
