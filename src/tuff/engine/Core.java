@@ -58,6 +58,7 @@ public class Core {
             if ((i == (simulationTime / 10)) || (i == (simulationTime / 20)) || (i == (simulationTime / 30))||(i == (simulationTime / 40)) || (i == (simulationTime / 50)) || (i == (simulationTime / 60))||(i == (simulationTime / 70)) || (i == (simulationTime / 80)) || (i == (simulationTime / 90))) {
                 System.out.print("-");
             }
+            
             iterate();
         }
         System.out.print("|");
@@ -80,6 +81,15 @@ public class Core {
             model.apply(vehicles.get(i));
 
         }
+//        System.out.println("");
+//        for (int i = 0; i < grid.getGrid().length; i++) {
+//            if(grid.getGrid()[i]==-1){
+//               System.out.print(" "); 
+//            }else{
+//            System.out.print("o");
+//            }
+//            
+//        }
         update();
 
     }

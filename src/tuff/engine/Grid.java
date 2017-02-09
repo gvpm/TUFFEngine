@@ -44,6 +44,8 @@ public class Grid {
             return i-1;
         } 
     }
+     
+    
 
     public void clear() {
 
@@ -51,8 +53,28 @@ public class Grid {
     }
 
     public void updateVehiclesOnGrid(ArrayList<Vehicle> vehicles) {
-        //updates all the vehicles on the gris, making them move acording to new velocity and
-        //updating old velocities and checking if there is conflicts.
+        clear();
+        for (int i = vehicles.size() - 1; i >= 0; i--) {
+            Vehicle v = vehicles.get(i);
+            int position = v.getNewGridXPosition();
+            
+            for (int j = 0; j < v.getSize(); j++) {
+                
+                if(getFromPosition(position)!= -1){
+                    throw new UnsupportedOperationException("Conflict between car "+getFromPosition(position)+" and "+v.getId());
+                    
+                }else{
+                    grid[position]=v.getId();
+                    position = getPreviousXPosition(position);
+                    //case of conflict
+                }
+                
+            }
+            
+            
+        }
+        
+        
     }
     
     public void placeVehiclesOnGrid(ArrayList<Vehicle> vehicles) {
