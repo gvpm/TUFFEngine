@@ -5,6 +5,9 @@
  */
 package tuff.engine;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -22,6 +25,10 @@ public class Core {
 
     Model model;
     DataExtractor dataExtractor;
+    //----------------------------LOG
+    FileWriter arq = null;
+    PrintWriter gravarArq;
+    //----------------------------
 
     public Core(SimulationParameters parameters) {
         this.parameters = parameters;
@@ -35,6 +42,20 @@ public class Core {
         model = modelFactory.fabricate(parameters.getModel());
 
         createGrid();
+        
+        //--------------------------------------------------------LOG
+        
+        try {
+            arq = new FileWriter("FD.txt");
+
+        } catch (IOException ex) {
+
+
+        }
+        gravarArq = new PrintWriter(arq);
+        
+
+//--------------------------------------------------------
 
     }
 
@@ -48,6 +69,9 @@ public class Core {
 
             density = density + deltaDensity;
         }
+        //-------------------------------LOG
+        gravarArq.close();
+        //-------------------------------
 
     }
 
@@ -59,23 +83,31 @@ public class Core {
         int statisticTime = parameters.getStatisticTime();
         int discardTime = parameters.getDiscardTime();
         int logTimeCounter = 0;
+        
+                    
+            
+
+        
+        
+        
         for (int i = 0; i < simulationTime; i++) {
-//            if ((i == (simulationTime / 10)) || (i == (simulationTime / 20)) || (i == (simulationTime / 30))||(i == (simulationTime / 40)) || (i == (simulationTime / 50)) || (i == (simulationTime / 60))||(i == (simulationTime / 70)) || (i == (simulationTime / 80)) || (i == (simulationTime / 90))) {
-//                System.out.print("-");
-//            }
-            //IF to get the log
+
+            //case to log
             if((logTimeCounter == statisticTime)&&(simulationTime>discardTime)){
                 
-                System.out.println("Flow: "+dataExtractor.getFlow(d));
-                
+                System.out.println("Flow: "+dataExtractor.getFlow(d*100));
+                //---------------------------------------------------LOG
+                 gravarArq.println(dataExtractor.getFlow(d*100)+" "+d*100);
+                 gravarArq.flush();
+                 //---------------------------------------------------
                 logTimeCounter = 0;
             }
             logTimeCounter++;
             
             iterate();
         }
-        System.out.print("|");
-        System.out.println("");
+        
+        
 
     }
 
