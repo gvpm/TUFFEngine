@@ -169,7 +169,8 @@ public class Core {
         //stops when there is the total numbers of cars for each profile
         while (vehicles.size() < totalCarsToInit) {
             Random rand = new Random();
-            int p = rand.nextInt(2);
+            int p = rand.nextInt(profiles.size());
+            
             if (nOfProfileCars[p] > 0) {
                 vehicles.add(new Vehicle(grid, this, profiles.get(p), idCount));
                 nOfProfileCars[p]--;

@@ -32,7 +32,7 @@ public class ModelNasch extends Model{
         newVel = min(currentVel+acceleration,vMax);
         newVel = min(newVel,distanceToFront);
         
-        if(vehicle.getProfile().getFdpProvider().provide(30)){
+        if(vehicle.getProfile().getFdpProvider().provide(35)){
             newVel = max(newVel-acceleration,0);
             
         }
