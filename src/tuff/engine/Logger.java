@@ -32,8 +32,8 @@ public class Logger {
 
     }
 
-    public void logALine(float flow, float density) {
-        gravarArq.println(flow + " " + density);
+    public void logALine(float flow, float density, float avgVel) {
+        gravarArq.println(flow + " " + density + " " + avgVel);
         gravarArq.flush();
 
     }

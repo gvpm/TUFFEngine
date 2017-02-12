@@ -27,4 +27,20 @@ public class FDPProviderFactory {
 
     }
 
+    public FDPProvider fabricate(String s) {
+
+        switch (s) {
+
+            case "normal":
+                return new FDPProviderNormal();
+
+            case "beta":
+                return new FDPProviderBeta();
+            default:
+                throw new UnsupportedOperationException("FDPProvider not supported"); //To change body of generated methods, choose Tools | Templates.
+
+        }
+
+    }
+
 }

@@ -58,7 +58,7 @@ public class Core {
 
             density = density + deltaDensity;
         }
-        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------");
         System.out.println("Simulation Ended");
         //-------------------------------LOG
         logger.closeLogger();
@@ -68,28 +68,30 @@ public class Core {
 
     public void simulateDensity(float d) {
         setInitialCondition(d);
+
         int simulationTime = parameters.getSimulationTime();
-        System.out.println("|---------|");
-//        System.out.print("|");
+        //System.out.println("|---------|");
+        //System.out.print("|");
         int statisticTime = parameters.getStatisticTime();
         int discardTime = parameters.getDiscardTime();
         int logTimeCounter = 0;
 
         float lastPrinted = 0;
         for (int i = 0; i < simulationTime; i++) {
-//            int percentage = (int)(((float)i/(float)simulationTime)*(float)100);
-//            if((lastPrinted != percentage)&&percentage%10==0){
-//                //System.out.print(" "+percentage);
-//                System.out.print("-");
-//                lastPrinted = percentage;
-//            }
+            /*
+            int percentage = (int)(((float)i/(float)simulationTime)*(float)100);
+            if((lastPrinted != percentage)&&percentage%10==0){
+               //System.out.print(" "+percentage);
+                System.out.print("-");
+                lastPrinted = percentage;
+            }
+             */
             iterate();
 
             //LOG TIME
             if ((logTimeCounter == statisticTime) && (simulationTime > discardTime)) {
-
-                logger.logALine(dataExtractor.getFlow(d * 100), d * 100);
-
+                float roundD = (float) (Math.round(d * 100.0) / 100.0);
+                logger.logALine(dataExtractor.getFlow(roundD * 100), roundD * 100, dataExtractor.getAvgVel());
                 logTimeCounter = 0;
             }
             logTimeCounter++;
@@ -141,10 +143,12 @@ public class Core {
         vehicles.clear();
         //clears the gris positions
         grid.init();
+        //rounds up densiti to 2 decimal cases
+        float roundD = (float) (Math.round(d * 100.0) / 100.0);
         //number of cells that will be occupied in this density
-        int occupiedCells = (int) (parameters.getCellsInX() * d);
-        System.out.println("\n-----------------------------------------------------------------------------------------");
-        System.out.println("Density: " + d + " Occupied Cells: " + occupiedCells + " out of " + parameters.getCellsInX());
+        int occupiedCells = (int) (parameters.getCellsInX() * roundD);
+        System.out.println("\n---------------------------------------------------------------");
+        System.out.println("Density: " + roundD + " Occupied Cells: " + occupiedCells + " out of " + parameters.getCellsInX());
         //will store here the numberof cars in this density or each profile
         int[] nOfProfileCars = new int[profiles.size()];
         int totalCarsToInit = 0;
@@ -207,7 +211,7 @@ public class Core {
 
     }
 
-    public Profile createProfile(FDPProvider fdpProvider, String name, int size, int velMax, int ahead, int safeDistance, int velIncrement, double percentageOccurrence, float alphaAcc, float betaAcc, float alphaAnt, float betaAnt) {
+    public Profile createProfile(String fdpProvider, String name, int size, int velMax, int ahead, int safeDistance, int velIncrement, double percentageOccurrence, float alphaAcc, float betaAcc, float alphaAnt, float betaAnt) {
         Profile newProfile = new Profile(fdpProvider, name, size, velMax, ahead, safeDistance, velIncrement, percentageOccurrence, alphaAcc, betaAcc, alphaAnt, betaAnt);
         profiles.add(newProfile);
         return newProfile;
