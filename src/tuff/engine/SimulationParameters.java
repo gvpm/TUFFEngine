@@ -10,6 +10,7 @@ package tuff.engine;
  * @author gvpm
  */
 public class SimulationParameters {
+
     int speedLimit;
     float probP;
     int simulationTime;
@@ -48,7 +49,6 @@ public class SimulationParameters {
         this.model = model;
     }
 
-    
     public int getSpeedLimit() {
         return speedLimit;
     }
@@ -144,8 +144,5 @@ public class SimulationParameters {
     public void setDefaultCarSize(int defaultCarSize) {
         this.defaultCarSize = defaultCarSize;
     }
-    
-    
-    
-    
+
 }

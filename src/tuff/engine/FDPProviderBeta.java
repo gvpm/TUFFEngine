@@ -10,11 +10,11 @@ package tuff.engine;
  * @author gvpm
  */
 public class FDPProviderBeta extends FDPProvider {
-    
+
     @Override
-    public float provide(float a, float b){
-        
+    public float provide(float a, float b) {
+
         return 1;
     }
-    
+
 }

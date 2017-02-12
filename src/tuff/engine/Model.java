@@ -13,26 +13,25 @@ public abstract class Model {
 
     public Model() {
     }
-    
-    public int min(int a, int b){
-        if (a>b){
+
+    public int min(int a, int b) {
+        if (a > b) {
             return b;
-        }else{
+        } else {
             return a;
         }
-        
+
     }
-      public int max(int a, int b){
-        if (a>b){
+
+    public int max(int a, int b) {
+        if (a > b) {
             return a;
-        }else{
+        } else {
             return b;
         }
-        
+
     }
-    
-    
-    
+
     public abstract void apply(Vehicle vehicle);
-    
+
 }

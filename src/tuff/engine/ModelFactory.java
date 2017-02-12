@@ -26,7 +26,7 @@ public class ModelFactory {
         }
 
     }
-    
+
     public Model fabricate(String s) {
 
         switch (s) {

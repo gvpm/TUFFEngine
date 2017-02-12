@@ -12,13 +12,13 @@ import java.util.Random;
  * @author gvpm
  */
 public class FDPProviderNormal extends FDPProvider {
-    
+
     @Override
-    public boolean provide(int a){
+    public boolean provide(int a) {
         Random rand = new Random();
         int p = rand.nextInt(100);
-        
-        return p<a;
+
+        return p < a;
     }
-    
+
 }

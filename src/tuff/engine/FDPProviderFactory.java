@@ -10,8 +10,7 @@ package tuff.engine;
  * @author gvpm
  */
 public class FDPProviderFactory {
-    
-    
+
     public FDPProvider fabricate(int n) {
 
         switch (n) {
@@ -27,5 +26,5 @@ public class FDPProviderFactory {
         }
 
     }
-    
+
 }

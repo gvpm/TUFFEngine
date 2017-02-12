@@ -10,15 +10,14 @@ package tuff.engine;
  * @author gvpm
  */
 public abstract class FDPProvider {
-    
-    
-    public boolean provide(int a){
+
+    public boolean provide(int a) {
         return false;
     }
-    
-    public float provide(float a, float b){
+
+    public float provide(float a, float b) {
         return 1;
-        
+
     }
-    
+
 }

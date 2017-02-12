@@ -25,7 +25,7 @@ public class Core {
 
     Model model;
     DataExtractor dataExtractor;
-    
+
     Logger logger;
     //----------------------------LOG
     FileWriter arq = null;
@@ -45,7 +45,6 @@ public class Core {
         model = modelFactory.fabricate(parameters.getModel());
 
         createGrid();
-
 
     }
 
@@ -75,7 +74,6 @@ public class Core {
         int statisticTime = parameters.getStatisticTime();
         int discardTime = parameters.getDiscardTime();
         int logTimeCounter = 0;
-        
 
         float lastPrinted = 0;
         for (int i = 0; i < simulationTime; i++) {
@@ -86,19 +84,17 @@ public class Core {
 //                lastPrinted = percentage;
 //            }
             iterate();
-            //case to log
-            if((logTimeCounter == statisticTime)&&(simulationTime>discardTime)){
-                
-                logger.logALine(dataExtractor.getFlow(d*100), d*100);
+
+            //LOG TIME
+            if ((logTimeCounter == statisticTime) && (simulationTime > discardTime)) {
+
+                logger.logALine(dataExtractor.getFlow(d * 100), d * 100);
 
                 logTimeCounter = 0;
             }
             logTimeCounter++;
-            
-            
+
         }
-        
-        
 
     }
 
@@ -126,7 +122,7 @@ public class Core {
         grid.updateVehiclesOnGrid(vehicles);
         for (int i = 0; i < vehicles.size(); i++) {
             vehicles.get(i).updateInfo();
-            
+
         }
 
     }
@@ -170,7 +166,7 @@ public class Core {
         while (vehicles.size() < totalCarsToInit) {
             Random rand = new Random();
             int p = rand.nextInt(profiles.size());
-            
+
             if (nOfProfileCars[p] > 0) {
                 vehicles.add(new Vehicle(grid, this, profiles.get(p), idCount));
                 nOfProfileCars[p]--;
@@ -224,6 +220,5 @@ public class Core {
     public SimulationParameters getParameters() {
         return parameters;
     }
-    
 
 }

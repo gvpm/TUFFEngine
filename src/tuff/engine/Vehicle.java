@@ -10,7 +10,7 @@ package tuff.engine;
  * @author gvpm
  */
 public class Vehicle {
-    
+
     Grid grid;
     Core core;
     Profile profile;
@@ -24,24 +24,24 @@ public class Vehicle {
     int velocity;
     int newVelocity;
     int oldVelocity;
-    
+
     Vehicle frontNeighbour;
     Vehicle backNeighbour;
 
-    public Vehicle(Grid grid, Core core, Profile profile,int id) {
+    public Vehicle(Grid grid, Core core, Profile profile, int id) {
         this.grid = grid;
         this.core = core;
         this.profile = profile;
         this.id = id;
-        this.velocity=0;
+        this.velocity = 0;
     }
+
     public Vehicle(Grid grid, Core core) {
         this.grid = grid;
         this.core = core;
-        this.velocity=0;
-        
-    }
+        this.velocity = 0;
 
+    }
 
     public Grid getGrid() {
         return grid;
@@ -122,11 +122,11 @@ public class Vehicle {
     public void setNewGridYPosition(int newGridYPosition) {
         this.newGridYPosition = newGridYPosition;
     }
-    
+
     @Override
-    public String toString(){
-        return ""+getId();
-        
+    public String toString() {
+        return "" + getId();
+
     }
 
     public Vehicle getFrontNeighbour() {
@@ -168,59 +168,48 @@ public class Vehicle {
     public void setOldVelocity(int oldVelocity) {
         this.oldVelocity = oldVelocity;
     }
-    public int getAcceleration(){
+
+    public int getAcceleration() {
         return getProfile().getVelIncrement();
-        
+
     }
-    public int getSize(){
+
+    public int getSize() {
         return getProfile().getSize();
-        
+
     }
-    
-    
-    public int getDistanceToFront(){
+
+    public int getDistanceToFront() {
         int pointer = grid.getNextXPosition(this.getGridXPosition());
-      
-       
-        int distance=0;
+
+        int distance = 0;
         //looks at front, cell by cell until it finds something in front
-        while(grid.getFromPosition(pointer)==-1){
+        while (grid.getFromPosition(pointer) == -1) {
             pointer = grid.getNextXPosition(pointer);
             distance++;
         }
-        
-        
-        
+
         return distance;
     }
-    
-    public int getVelMax(){
+
+    public int getVelMax() {
         return profile.getVelMax();
-        
+
     }
-    
+
     //after grid is updated, vehicle updates itself to next step
-    public void updateInfo(){
+    public void updateInfo() {
 //        if(getId()==4 && newGridXPosition!=gridXPosition){
 //            System.out.print(" "+ gridXPosition);
 //        }
-        
+
         oldGridXPosition = gridXPosition;
         oldGridYPosition = gridYPosition;
         gridXPosition = newGridXPosition;
         gridYPosition = newGridYPosition;
         oldVelocity = velocity;
         velocity = newVelocity;
- 
+
     }
-    
-    
-    
-    
-    
-    
-    
-            
-            
-    
+
 }

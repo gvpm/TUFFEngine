@@ -10,7 +10,7 @@ package tuff.engine;
  * @author gvpm
  */
 public class Profile {
-    
+
     FDPProvider fdpProvider;
     String name;
     int size;
@@ -138,12 +138,11 @@ public class Profile {
     public void setBetaAnt(float betaAnt) {
         this.betaAnt = betaAnt;
     }
+
     @Override
-    public String toString(){
-        
-        return getName()+" Occurrence: "+getPercentageOccurrence()+ " Size: "+getSize();
+    public String toString() {
+
+        return getName() + " Occurrence: " + getPercentageOccurrence() + " Size: " + getSize();
     }
-    
-    
-    
+
 }

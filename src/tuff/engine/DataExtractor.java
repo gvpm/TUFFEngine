@@ -12,32 +12,30 @@ import java.util.ArrayList;
  * @author gvpm
  */
 public class DataExtractor {
-    
+
     Core core;
 
     public DataExtractor(Core core) {
         this.core = core;
     }
-    
-    public float getFlow(float density){
-    
-        return density*getAvgVel();
+
+    public float getFlow(float density) {
+
+        return density * getAvgVel();
     }
-    
-    public float getAvgVel(){
+
+    public float getAvgVel() {
         int numOfVehicles = core.getVehicles().size();
-        float sum=0;
+        float sum = 0;
         for (int i = 0; i < numOfVehicles; i++) {
             float velInKMH;
-            velInKMH = (core.getVehicles().get(i).getVelocity())*core.getParameters().getCellSize()*(float)3.6;
-            sum +=velInKMH;
+            velInKMH = (core.getVehicles().get(i).getVelocity()) * core.getParameters().getCellSize() * (float) 3.6;
+            sum += velInKMH;
             //sum +=core.getVehicles().get(i).getVelocity();
-            
+
         }
 
-        return sum/numOfVehicles;
+        return sum / numOfVehicles;
     }
-    
-    
-    
+
 }
