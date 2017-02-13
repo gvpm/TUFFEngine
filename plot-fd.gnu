@@ -11,17 +11,16 @@ set ylabel "Flow"
  
 
 plot 'plotar.txt' using ($2):($1) w p t "Fluxo Densidade"
-#plot 'plotar.txt' using ($14):($13) w p t "Direita"
 
 set terminal pdf color 
 
-set out 'plotado-fluxo-dens-esq.pdf'
+set out 'plotado-fluxo-dens.pdf'
 replot
 
 
 set terminal postscript eps color lw 2 "Helvetica" 20
 
-set out 'plotado-fluxo-dens-esq.eps'
+set out 'plotado-fluxo-dens.eps'
 replot
 
 
