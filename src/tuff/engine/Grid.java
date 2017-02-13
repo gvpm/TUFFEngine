@@ -53,6 +53,13 @@ public class Grid {
         init();
     }
 
+    /**
+     * Clears the grid information and fills it again respecting the vehicles
+     * size. For each grid cell it puts the id of the vehicle that is there. -1
+     * for empty cells. Throws exception if it founds conflict.
+     *
+     * @param vehicles List of vehicles to update.
+     */
     public void updateVehiclesOnGrid(ArrayList<Vehicle> vehicles) {
         clear();
         for (int i = vehicles.size() - 1; i >= 0; i--) {
@@ -76,6 +83,11 @@ public class Grid {
 
     }
 
+    /**
+     * Places vehicles on the grid at the beginning, all together in the end.
+     *
+     * @param vehicles
+     */
     public void placeVehiclesOnGrid(ArrayList<Vehicle> vehicles) {
 
         int xPosition = grid.length - 1;
@@ -97,6 +109,14 @@ public class Grid {
         return grid;
     }
 
+    /**
+     * Function that will return the new X position, adding vel cells to
+     * position x.
+     *
+     * @param x current position
+     * @param vel new velocity
+     * @return returns new position
+     */
     public int getNewXPostition(int x, int vel) {
 
         int newXPosition = x;

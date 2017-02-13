@@ -6,7 +6,6 @@
 package tuff.engine;
 
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
@@ -36,47 +35,63 @@ public class Core {
         this.parameters = parameters;
         profiles = new ArrayList<>();
         vehicles = new ArrayList<>();
-        dataExtractor = new DataExtractor(this);
-        logger = new Logger("plotar");
+
     }
 
     public void init() {
         ModelFactory modelFactory = new ModelFactory();
         model = modelFactory.fabricate(parameters.getModel());
+        dataExtractor = new DataExtractor(this);
+        logger = new Logger("plotar");
 
         createGrid();
 
     }
 
+    /**
+     * Will trigger the simulation to all densities, will go from inicialDensity
+     * to finalDensity adding deltaDensity each time.
+     *
+     */
     public void simulateAllDensities() {
+
         float density = parameters.getInitialDensity();
         float deltaDensity = parameters.getDeltaDensity();
         float finalDensity = parameters.getFinalDensity();
+
+        //Triggers here all the simulations
         while (density < finalDensity) {
 
             simulateDensity(density);
 
             density = density + deltaDensity;
         }
+        //End of simulation
         System.out.println("---------------------------------------------------------------");
         System.out.println("Simulation Ended");
         //-------------------------------LOG
+        //Closing the log here.
         logger.closeLogger();
         //-------------------------------
 
     }
 
+    /**
+     * Simulates one specific density.
+     *
+     * @param d density to simulate
+     */
     public void simulateDensity(float d) {
+        //Sets inicial condition or this density.
         setInitialCondition(d);
 
         int simulationTime = parameters.getSimulationTime();
-        //System.out.println("|---------|");
-        //System.out.print("|");
         int statisticTime = parameters.getStatisticTime();
         int discardTime = parameters.getDiscardTime();
         int logTimeCounter = 0;
 
-        float lastPrinted = 0;
+        //float lastPrinted = 0;
+        //One step for each second  stated in simulation time
         for (int i = 0; i < simulationTime; i++) {
             /*
             int percentage = (int)(((float)i/(float)simulationTime)*(float)100);
@@ -89,9 +104,11 @@ public class Core {
             iterate();
 
             //LOG TIME
+            //Will log every statisticTime, no logging the  initial discardTime
             if ((logTimeCounter == statisticTime) && (simulationTime > discardTime)) {
                 float roundD = (float) (Math.round(d * 100.0) / 100.0);
                 logger.logALine(dataExtractor.getFlow(roundD * 100), roundD * 100, dataExtractor.getAvgVel());
+                //
                 logTimeCounter = 0;
             }
             logTimeCounter++;
@@ -100,6 +117,10 @@ public class Core {
 
     }
 
+    /**
+     * Main iteration, applies the model for each vehicle, updates the grid
+     * after.
+     */
     public void iterate() {
 
         for (int i = 0; i < vehicles.size(); i++) {
@@ -120,6 +141,11 @@ public class Core {
 
     }
 
+    /**
+     * Asks the grid to update itself, using the newPosition on the grid of the
+     * vehicles, Also updates the vehicles informations, making them ready for
+     * next iteration.
+     */
     public void update() {
         grid.updateVehiclesOnGrid(vehicles);
         for (int i = 0; i < vehicles.size(); i++) {
@@ -129,7 +155,6 @@ public class Core {
 
     }
 
-    //will create the grid with the parameters
     private void createGrid() {
         grid = new Grid(parameters.getCellsInX());
         grid.init();
