@@ -16,7 +16,7 @@ public class FDPProviderFactory {
         switch (n) {
 
             case 1:
-                return new FDPProviderNormal();
+                return new FDPProviderUniform();
 
             case 2:
                 return new FDPProviderBeta();
@@ -31,8 +31,8 @@ public class FDPProviderFactory {
 
         switch (s) {
 
-            case "normal":
-                return new FDPProviderNormal();
+            case "uniform":
+                return new FDPProviderUniform();
 
             case "beta":
                 return new FDPProviderBeta();

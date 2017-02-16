@@ -20,6 +20,8 @@ public class ModelFactory {
 
             case 2:
                 return new ModelTUFF();
+            case 3:
+                return new ModelNaschWithBeta();
             default:
                 throw new UnsupportedOperationException("Model not supported"); //To change body of generated methods, choose Tools | Templates.
 
@@ -32,6 +34,8 @@ public class ModelFactory {
         switch (s) {
 
             case "nasch":
+                return new ModelNasch();
+            case "naschWithBeta":
                 return new ModelNasch();
 
             case "tuff":

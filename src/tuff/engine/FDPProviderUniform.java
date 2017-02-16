@@ -11,7 +11,7 @@ import java.util.Random;
  *
  * @author gvpm
  */
-public class FDPProviderNormal extends FDPProvider {
+public class FDPProviderUniform extends FDPProvider {
 
     @Override
     public boolean provide(int a) {
