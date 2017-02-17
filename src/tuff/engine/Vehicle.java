@@ -211,20 +211,21 @@ public class Vehicle {
         velocity = newVelocity;
 
     }
-    public float getBetaFunctionAcc(){
+
+    public float getBetaFunctionAcc() {
         float a = getProfile().getAlphaAcc();
         float b = getProfile().getBetaAcc();
-        
-        return getProfile().getFdpProvider().provide((int)a, (int)b);
-        
+
+        return getProfile().getFdpProvider().provide((int) a, (int) b);
+
     }
-       public float getBetaFunctionAnt(){
+
+    public float getBetaFunctionAnt() {
         float a = getProfile().getAlphaAnt();
         float b = getProfile().getBetaAnt();
-        
-        return getProfile().getFdpProvider().provide((int)a, (int)b);
-        
+
+        return getProfile().getFdpProvider().provide((int) a, (int) b);
+
     }
-    
 
 }

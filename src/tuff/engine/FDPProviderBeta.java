@@ -19,15 +19,13 @@ public class FDPProviderBeta extends FDPProvider {
             x = (float) Math.random();
 
             y = Math.random() * getBeta(a, b, (float) getModa(a, b));
-         
 
         } while (y > getBeta(a, b, x));
 
-
         return x;
     }
-    
-      public float provideWithPrints(int a, int b) {
+
+    public float provideWithPrints(int a, int b) {
         double y;
         float x;
         do {
