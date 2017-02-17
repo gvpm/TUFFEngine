@@ -15,7 +15,7 @@ public abstract class FDPProvider {
         return false;
     }
 
-    public float provide(float a, float b) {
+    public float provide(int a, int b) {
         return 1;
 
     }

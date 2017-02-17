@@ -105,14 +105,27 @@ public class Core {
 
             //LOG TIME
             //Will log every statisticTime, no logging the  initial discardTime
-            if ((logTimeCounter == statisticTime) && (simulationTime > discardTime)) {
-                float roundD = (float) (Math.round(d * 100.0) / 100.0);
-                logger.logALine(dataExtractor.getFlow(roundD * 100), roundD * 100, dataExtractor.getAvgVel());
-                //
-                logTimeCounter = 0;
-            }
-            logTimeCounter++;
+            if ((i > discardTime)) {
+                logTimeCounter++;
+                if ((logTimeCounter == statisticTime)) {
 
+                    float roundD = (float) (Math.round(d * 100.0) / 100.0);
+                    logger.logALine(dataExtractor.getFlow(roundD * 100), roundD * 100, dataExtractor.getAvgVel());
+                    logTimeCounter = 0;
+                }
+
+            }
+
+            //LOG TIME
+            //Will log every statisticTime, no logging the  initial discardTime
+//            if ((logTimeCounter == statisticTime)) {
+//                if ((simulationTime > discardTime)) {
+//                    float roundD = (float) (Math.round(d * 100.0) / 100.0);
+//                    logger.logALine(dataExtractor.getFlow(roundD * 100), roundD * 100, dataExtractor.getAvgVel());
+//                }
+//                logTimeCounter = 0;
+//            }
+//            logTimeCounter++;
         }
 
     }

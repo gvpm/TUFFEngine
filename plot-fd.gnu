@@ -2,10 +2,10 @@ reset
 set grid
 #set ytic 0.1
 #set xtic 0.1
-set yrange[0:1500]
+#set yrange[0:1850]
+#set xrange[0:100]
+set yrange[0:2600]
 set xrange[0:100]
-#set yrange[0:3600]
-#set xrange[0:133]
 set xlabel "Density"
 set ylabel "Flow"
  

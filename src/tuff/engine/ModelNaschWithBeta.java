@@ -25,13 +25,11 @@ public class ModelNaschWithBeta extends Model {
         distanceToFront = vehicle.getDistanceToFront();
 
         //Calculate new vel, addind acceleratio to vel
-        newVel = min(currentVel + acceleration, vMax);
+        float alpha = vehicle.getBetaFunctionAcc();
+        newVel = min(currentVel + (int)(acceleration*(1-alpha)), vMax);
+        
 
-        //Gets the alpha to decide if its goind to use acceletarion or not
-        if (vehicle.getProfile().getFdpProvider().provide(35)) {
-            newVel = max(newVel - acceleration, 0);
-
-        }
+    
         //Caps the new vel bases on the distance to the vehicle on the front
         newVel = min(newVel, distanceToFront);
 

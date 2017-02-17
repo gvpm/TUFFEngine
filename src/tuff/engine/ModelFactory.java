@@ -36,7 +36,7 @@ public class ModelFactory {
             case "nasch":
                 return new ModelNasch();
             case "naschWithBeta":
-                return new ModelNasch();
+                return new ModelNaschWithBeta();
 
             case "tuff":
                 return new ModelTUFF();
