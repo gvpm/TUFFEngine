@@ -146,25 +146,50 @@ public class Core {
 //
 //        }
 //update();
-
-        ExecutorService es = Executors.newFixedThreadPool(4);
-
-        Future<Integer> task = es.submit(new IterationCallable(this,1,4,"Thread1"));
-        Future<Integer> task2 = es.submit(new IterationCallable(this,2,4,"Thread2"));
-        Future<Integer> task3 = es.submit(new IterationCallable(this,3,4,"Thread3"));
-        Future<Integer> task4 = es.submit(new IterationCallable(this,4,4,"Thread4"));
-
-        Integer result = task.get();
-        Integer result2 = task2.get();
-        Integer result3 = task3.get();
-        Integer result4 = task4.get();
-
         
-        if(result==1&&result2==1&&result3==1&&result4==1){
-        update();
+        
+        
+        
+        int processors = Runtime.getRuntime().availableProcessors();
+        
+        ExecutorService es = Executors.newFixedThreadPool(processors);
+        
+        ArrayList<Future<Integer>> tasks = new ArrayList<>();
+        
+        
+        for (int i = 1; i <= processors; i++) {
+            Future<Integer> task = es.submit(new IterationCallable(this, i, processors, ""));
+            tasks.add(task);
         }
-        es.shutdown();
 
+//        Future<Integer> task = es.submit(new IterationCallable(this, 1, 8, "Thread1"));
+//        Future<Integer> task2 = es.submit(new IterationCallable(this, 2, 8, "Thread2"));
+//        Future<Integer> task3 = es.submit(new IterationCallable(this, 3, 8, "Thread3"));
+//        Future<Integer> task4 = es.submit(new IterationCallable(this, 4, 8, "Thread4"));
+//        Future<Integer> task5 = es.submit(new IterationCallable(this, 5, 8, "Thread3"));
+//        Future<Integer> task6 = es.submit(new IterationCallable(this, 6, 8, "Thread4"));
+//        Future<Integer> task7 = es.submit(new IterationCallable(this, 7, 8, "Thread4"));
+//        Future<Integer> task8 = es.submit(new IterationCallable(this, 8, 8, "Thread4"));
+    
+        
+        for (int i = 0; i < tasks.size(); i++) {
+                Integer result=tasks.get(i).get();
+            
+        }
+//        Integer result = task.get();
+//        Integer result2 = task2.get();
+//        Integer result3 = task3.get();
+//        Integer result4 = task4.get();
+//        Integer result5 = task5.get();
+//        Integer result6 = task6.get();
+//        Integer result7 = task7.get();
+//        Integer result8 = task8.get();
+
+        //if(result==1&&result2==1&&result3==1&&result4==1){
+        es.shutdown();
+        update();
+        //}
+        //es.shutdown();
 
 //        System.out.println("");
 //        for (int i = 0; i < grid.getGrid().length; i++) {
