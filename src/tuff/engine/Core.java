@@ -9,6 +9,10 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  *
@@ -53,7 +57,7 @@ public class Core {
      * to finalDensity adding deltaDensity each time.
      *
      */
-    public void simulateAllDensities() {
+    public void simulateAllDensities() throws InterruptedException, ExecutionException {
 
         float density = parameters.getInitialDensity();
         float deltaDensity = parameters.getDeltaDensity();
@@ -81,7 +85,7 @@ public class Core {
      *
      * @param d density to simulate
      */
-    public void simulateDensity(float d) {
+    public void simulateDensity(float d) throws InterruptedException, ExecutionException {
         //Sets inicial condition or this density.
         setInitialCondition(d);
 
@@ -134,13 +138,34 @@ public class Core {
      * Main iteration, applies the model for each vehicle, updates the grid
      * after.
      */
-    public void iterate() {
+    public void iterate() throws InterruptedException, ExecutionException {
 
-        for (int i = 0; i < vehicles.size(); i++) {
+//        for (int i = 0; i < vehicles.size(); i++) {
+//
+//            model.apply(vehicles.get(i));
+//
+//        }
+//update();
 
-            model.apply(vehicles.get(i));
+        ExecutorService es = Executors.newFixedThreadPool(4);
 
+        Future<Integer> task = es.submit(new IterationCallable(this,1,4,"Thread1"));
+        Future<Integer> task2 = es.submit(new IterationCallable(this,2,4,"Thread2"));
+        Future<Integer> task3 = es.submit(new IterationCallable(this,3,4,"Thread3"));
+        Future<Integer> task4 = es.submit(new IterationCallable(this,4,4,"Thread4"));
+
+        Integer result = task.get();
+        Integer result2 = task2.get();
+        Integer result3 = task3.get();
+        Integer result4 = task4.get();
+
+        
+        if(result==1&&result2==1&&result3==1&&result4==1){
+        update();
         }
+        es.shutdown();
+
+
 //        System.out.println("");
 //        for (int i = 0; i < grid.getGrid().length; i++) {
 //            if(grid.getGrid()[i]==-1){
@@ -150,7 +175,22 @@ public class Core {
 //            }
 //            
 //        }
-        update();
+    }
+
+    public void iteratePart(int partNumber, int parts) {
+        int total = vehicles.size();
+        int partSize = vehicles.size() / parts;
+
+        int end = (partSize * partNumber);
+        if (partNumber == parts) {
+            end = vehicles.size();
+        }
+
+        for (int i = 0 + (partSize * (partNumber - 1)); i < end; i++) {
+            //System.out.print(" " + i);
+
+            model.apply(vehicles.get(i));
+        }
 
     }
 
