@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tuff.engine;
 
 /**
+ * Responsible to store all the profiles information. Core will have an
+ * arrayList of profiles.
  *
- * @author gvpm
+ * @author
  */
 public class Profile {
 
@@ -38,10 +35,6 @@ public class Profile {
         this.betaAcc = betaAcc;
         this.alphaAnt = alphaAnt;
         this.betaAnt = betaAnt;
-    }
-
-    Profile() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public FDPProvider getFdpProvider() {

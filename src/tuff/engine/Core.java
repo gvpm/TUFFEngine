@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tuff.engine;
 
 import java.io.FileWriter;
@@ -15,8 +10,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
+ * Responsible to initiate, run, and log all the simulation, its the heart of
+ * the program.
  *
- * @author gvpm
  */
 public class Core {
 
@@ -42,12 +38,16 @@ public class Core {
 
     }
 
+    //Initializes the core.
     public void init() {
+        //Creates the model to be applied in the cars, using a factory.
         ModelFactory modelFactory = new ModelFactory();
         model = modelFactory.fabricate(parameters.getModel());
+        //Creates a data extractor, will provide the information to be logged.
         dataExtractor = new DataExtractor(this);
+        //Will log information 
         logger = new Logger("plotar");
-
+        //Creates the grid
         createGrid();
 
     }
@@ -139,57 +139,34 @@ public class Core {
      * after.
      */
     public void iterate() throws InterruptedException, ExecutionException {
-
+//NORMAL ITERARION, COMMENTED, USING THREADS NOW
 //        for (int i = 0; i < vehicles.size(); i++) {
 //
 //            model.apply(vehicles.get(i));
 //
 //        }
-//update();
-        
-        
-        
-        
+//          update();
+        //Gets the number of processors available in the machine
         int processors = Runtime.getRuntime().availableProcessors();
-        
+        //Creates an executor service to run threads.
         ExecutorService es = Executors.newFixedThreadPool(processors);
-        
+        //An arrayList to store the tasks created
         ArrayList<Future<Integer>> tasks = new ArrayList<>();
-        
-        
+        //Submits one thread per processor, dividing the vehicles in n(number of processors)groups
         for (int i = 1; i <= processors; i++) {
-            Future<Integer> task = es.submit(new IterationCallable(this, i, processors, ""));
+            Future<Integer> task = es.submit(new IterationCallable(this, i, processors, "Part"));
             tasks.add(task);
         }
 
-//        Future<Integer> task = es.submit(new IterationCallable(this, 1, 8, "Thread1"));
-//        Future<Integer> task2 = es.submit(new IterationCallable(this, 2, 8, "Thread2"));
-//        Future<Integer> task3 = es.submit(new IterationCallable(this, 3, 8, "Thread3"));
-//        Future<Integer> task4 = es.submit(new IterationCallable(this, 4, 8, "Thread4"));
-//        Future<Integer> task5 = es.submit(new IterationCallable(this, 5, 8, "Thread3"));
-//        Future<Integer> task6 = es.submit(new IterationCallable(this, 6, 8, "Thread4"));
-//        Future<Integer> task7 = es.submit(new IterationCallable(this, 7, 8, "Thread4"));
-//        Future<Integer> task8 = es.submit(new IterationCallable(this, 8, 8, "Thread4"));
-    
-        
+        //Uses .get() in all the tasks, because it blockes the current one until tasks are finished.
         for (int i = 0; i < tasks.size(); i++) {
-                Integer result=tasks.get(i).get();
-            
-        }
-//        Integer result = task.get();
-//        Integer result2 = task2.get();
-//        Integer result3 = task3.get();
-//        Integer result4 = task4.get();
-//        Integer result5 = task5.get();
-//        Integer result6 = task6.get();
-//        Integer result7 = task7.get();
-//        Integer result8 = task8.get();
+            Integer result = tasks.get(i).get();
 
-        //if(result==1&&result2==1&&result3==1&&result4==1){
+        }
+        //Closes the executor service
         es.shutdown();
+        //Updates the grid
         update();
-        //}
-        //es.shutdown();
 
 //        System.out.println("");
 //        for (int i = 0; i < grid.getGrid().length; i++) {
@@ -202,18 +179,28 @@ public class Core {
 //        }
     }
 
+    /**
+     * Using a given number of parts and a part number, it divides the vehicle
+     * in n parts and iterates the given part.
+     *
+     * @param partNumber number of the part
+     * @param parts number of parts to divide the vehicles
+     */
     public void iteratePart(int partNumber, int parts) {
+        //total number of vehicles
         int total = vehicles.size();
+        //number of vehicles in each part
         int partSize = vehicles.size() / parts;
-
+        //end the current part to iterate
         int end = (partSize * partNumber);
+        //case when its the last part
         if (partNumber == parts) {
             end = vehicles.size();
         }
-
+        //iterates from the begining of that part to the end of that part
         for (int i = 0 + (partSize * (partNumber - 1)); i < end; i++) {
             //System.out.print(" " + i);
-
+            //applies the model to the current vehicle
             model.apply(vehicles.get(i));
         }
 

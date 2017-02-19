@@ -1,13 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tuff.engine;
 
 import java.util.ArrayList;
 
 /**
+ * Responsible to store all the grid information. Stored where the cars are, its
+ * ids and provide information such as next and previous car. Also responsible
+ * to update the cars in the grid in each iteration.
  *
  * @author gvpm
  */

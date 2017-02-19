@@ -1,20 +1,17 @@
 package tuff.engine;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.util.concurrent.ExecutionException;
+
 /**
+ * The console way to run the simulation.
  *
- * @author gvpm
  */
 public class ConsoleApp {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
 
 //        FDPProviderFactory factory = new FDPProviderFactory();
 //        
@@ -27,7 +24,6 @@ public class ConsoleApp {
 //            System.out.println(fbeta.provide(4, 9));
 //            
 //        }
-        // TODO code application logic here
         //-------------------------------------(int speedLimit, float probP, int simulationTime, int discardTime, int statisticTime, float initialDensity, float deltaDendity, float finalDensity, int cellsInX, int cellsInY, float cellSize, float defaultCarSize, String model) 
         SimulationParameters parameters = new SimulationParameters(25, 35, 15000, 10000, 121, (float) 0.01, (float) 0.01, (float) 0.9, 10000, 1, (float) 1.5, (float) 7.5, "naschWithBeta");
         //SimulationParameters parameters = new SimulationParameters(25, 35, 15000, 10000, 121, (float) 0.01, (float) 0.01, (float) 0.9, 10000, 1, (float) 1.5, (float) 7.5, "nasch");

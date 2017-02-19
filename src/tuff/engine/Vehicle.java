@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tuff.engine;
 
 /**
+ * Responsible to store the vehicles information. The vehicle know what core it
+ * is in, what grid and what profile it has.
  *
  * @author gvpm
  */

@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tuff.engine;
 
 /**
+ * Responsible to store all the simulation parameters. It will be given to Core
+ * class, and here all the simulation parameters will be stored.
  *
- * @author gvpm
  */
 public class SimulationParameters {
 

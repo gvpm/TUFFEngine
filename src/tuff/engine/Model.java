@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tuff.engine;
 
 /**
+ * Abstract model class, all models should implement this. It contains the
+ * min/max calculation normally used in models.
  *
  * @author gvpm
  */
