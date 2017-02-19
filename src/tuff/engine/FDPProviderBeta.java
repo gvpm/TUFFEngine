@@ -21,6 +21,7 @@ public class FDPProviderBeta extends FDPProvider {
         return x;
     }
 
+    //used for debug
     public float provideWithPrints(int a, int b) {
         double y;
         float x;
