@@ -2,21 +2,23 @@
 //-----------------Simulation Parameters-------------
 //---------------------------------------------------
 //- Model Values (nasch,naschWithBeta)
+//- PictureLog Value (0 will not log, 1 will log)
 //---------------------------------------------------
 SPEEDLIMIT:25
 PROBP:35
 SIMULATIONTIME:15000
 DISCARDTIME:10000
 STATISTICTIME:121
-INITIALDENSITY:0.3
+INITIALDENSITY:0.05
 DELTADENSITY:0.01
-FINALDENSITY:0.31
+FINALDENSITY:0.9
 CELLSINX:10000
 CELLSINY:1
 CELLSIZE:1.5
 DEFAULTCARSIZE:7.5
 MODEL:naschWithBeta
 LOGNAME:plotar
+PICTURELOG:0
 ENDOFPARAMETERS
 //---------------------------------------------------
 //---------------------Profiles----------------------

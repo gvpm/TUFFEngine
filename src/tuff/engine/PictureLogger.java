@@ -32,15 +32,14 @@ public class PictureLogger {
     public void logALine(int[] grid) {
         for (int i = 0; i < grid.length; i++) {
             int j = grid[i];
-            if(j==-1){
-               gravarArq.print(0);
-            }else{
-               gravarArq.print(1);  
+            if (j == -1) {
+                gravarArq.print(0);
+            } else {
+                gravarArq.print(1);
             }
-                      
-            
+
         }
-            gravarArq.println();
+        gravarArq.println();
         //gravarArq.println(flow + " " + density + " " + avgVel);
         gravarArq.flush();
 
@@ -54,5 +53,5 @@ public class PictureLogger {
     public float getDensity() {
         return density;
     }
-    
+
 }

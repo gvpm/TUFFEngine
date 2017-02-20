@@ -26,6 +26,7 @@ public class Core {
     DataExtractor dataExtractor;
 
     Logger logger;
+    PictureLogger picLogger;
 
     //----------------------------LOG
     FileWriter arq = null;
@@ -99,7 +100,9 @@ public class Core {
         setInitialCondition(d);
         float roundD = (float) (Math.round(d * 100.0) / 100.0);
         String fileName = "" + roundD;
-        PictureLogger picLogger = new PictureLogger(fileName, roundD);
+        if (parameters.getPictureLog() == 1) {
+            picLogger = new PictureLogger(fileName, roundD);
+        }
 
         int simulationTime = parameters.getSimulationTime();
         int statisticTime = parameters.getStatisticTime();
@@ -118,7 +121,10 @@ public class Core {
             }
              */
             iterate();
-            picLogger.logALine(grid.getGrid());
+
+            if (parameters.getPictureLog() == 1) {
+                picLogger.logALine(grid.getGrid());
+            }
 
             //LOG TIME
             //Will log every statisticTime, no logging the  initial discardTime
@@ -133,7 +139,9 @@ public class Core {
             }
 
         }
-        picLogger.closeLogger();
+        if (parameters.getPictureLog() == 1) {
+            picLogger.closeLogger();
+        }
 
     }
 
