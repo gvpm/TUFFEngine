@@ -26,6 +26,7 @@ public class Core {
     DataExtractor dataExtractor;
 
     Logger logger;
+
     //----------------------------LOG
     FileWriter arq = null;
     PrintWriter gravarArq;
@@ -54,6 +55,7 @@ public class Core {
         dataExtractor = new DataExtractor(this);
         //Will log information 
         logger = new Logger(parameters.getLogName());
+
         //Creates the grid
         createGrid();
 
@@ -95,6 +97,9 @@ public class Core {
     public void simulateDensity(float d) throws InterruptedException, ExecutionException {
         //Sets inicial condition or this density.
         setInitialCondition(d);
+        float roundD = (float) (Math.round(d * 100.0) / 100.0);
+        String fileName = "" + roundD;
+        PictureLogger picLogger = new PictureLogger(fileName, roundD);
 
         int simulationTime = parameters.getSimulationTime();
         int statisticTime = parameters.getStatisticTime();
@@ -113,6 +118,7 @@ public class Core {
             }
              */
             iterate();
+            picLogger.logALine(grid.getGrid());
 
             //LOG TIME
             //Will log every statisticTime, no logging the  initial discardTime
@@ -120,24 +126,14 @@ public class Core {
                 logTimeCounter++;
                 if ((logTimeCounter == statisticTime)) {
 
-                    float roundD = (float) (Math.round(d * 100.0) / 100.0);
                     logger.logALine(dataExtractor.getFlow(roundD * 100), roundD * 100, dataExtractor.getAvgVel());
                     logTimeCounter = 0;
                 }
 
             }
 
-            //LOG TIME
-            //Will log every statisticTime, no logging the  initial discardTime
-//            if ((logTimeCounter == statisticTime)) {
-//                if ((simulationTime > discardTime)) {
-//                    float roundD = (float) (Math.round(d * 100.0) / 100.0);
-//                    logger.logALine(dataExtractor.getFlow(roundD * 100), roundD * 100, dataExtractor.getAvgVel());
-//                }
-//                logTimeCounter = 0;
-//            }
-//            logTimeCounter++;
         }
+        picLogger.closeLogger();
 
     }
 
