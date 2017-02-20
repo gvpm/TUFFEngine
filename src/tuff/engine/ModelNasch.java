@@ -24,7 +24,7 @@ public class ModelNasch extends Model {
         newVel = min(currentVel + acceleration, vMax);
 
         //Gets the alpha to decide if its goind to use acceletarion or not
-        if (vehicle.getProfile().getFdpProvider().provide(35)) {
+        if (vehicle.getProfile().getFdpProvider().provide((int) vehicle.getCore().getParameters().getProbP())) {
             newVel = max(newVel - acceleration, 0);
 
         }

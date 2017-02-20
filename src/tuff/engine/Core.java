@@ -38,6 +38,13 @@ public class Core {
 
     }
 
+    public Core() {
+
+        profiles = new ArrayList<>();
+        vehicles = new ArrayList<>();
+
+    }
+
     //Initializes the core.
     public void init() {
         //Creates the model to be applied in the cars, using a factory.
@@ -46,7 +53,7 @@ public class Core {
         //Creates a data extractor, will provide the information to be logged.
         dataExtractor = new DataExtractor(this);
         //Will log information 
-        logger = new Logger("plotar");
+        logger = new Logger(parameters.getLogName());
         //Creates the grid
         createGrid();
 
@@ -313,6 +320,10 @@ public class Core {
 
     public SimulationParameters getParameters() {
         return parameters;
+    }
+
+    public void setParameters(SimulationParameters parameters) {
+        this.parameters = parameters;
     }
 
 }
