@@ -17,4 +17,9 @@ public class FDPProviderUniform extends FDPProvider {
         return p < a;
     }
 
+    @Override
+    public String toString() {
+        return "Uniform";
+    }
+
 }

@@ -30,5 +30,7 @@ public abstract class Model {
     }
 
     public abstract void apply(Vehicle vehicle);
+    @Override
+    public abstract String toString();
 
 }

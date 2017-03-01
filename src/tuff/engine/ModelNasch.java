@@ -41,4 +41,9 @@ public class ModelNasch extends Model {
 
     }
 
+    @Override
+    public String toString() {
+        return "Nasch";
+    }
+
 }

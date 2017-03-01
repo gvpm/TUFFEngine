@@ -132,11 +132,12 @@ public class Profile {
     public void setBetaAnt(float betaAnt) {
         this.betaAnt = betaAnt;
     }
+    
 
     @Override
     public String toString() {
 
-        return getName() + " Occurrence: " + getPercentageOccurrence() + " Size: " + getSize();
+        return getName() + " Occurrence: " + getPercentageOccurrence() + " Size: " + getSize()+" FDPProvider: "+ this.getFdpProvider().toString();
     }
 
 }

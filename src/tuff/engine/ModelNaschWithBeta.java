@@ -38,5 +38,9 @@ public class ModelNaschWithBeta extends Model {
         vehicle.setNewGridXPosition(newXPosition);
 
     }
+        @Override
+    public String toString() {
+        return "NaschWithBeta";
+    }
 
 }

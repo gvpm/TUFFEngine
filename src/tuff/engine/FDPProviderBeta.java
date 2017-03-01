@@ -90,4 +90,9 @@ public class FDPProviderBeta extends FDPProvider {
 
     }
 
+    @Override
+    public String toString() {
+        return "Beta";
+    }
+
 }

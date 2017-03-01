@@ -69,6 +69,8 @@ public class Core {
      */
     public void simulateAllDensities() throws InterruptedException, ExecutionException {
 
+        printSimulationInfo();
+
         float density = parameters.getInitialDensity();
         float deltaDensity = parameters.getDeltaDensity();
         float finalDensity = parameters.getFinalDensity();
@@ -100,6 +102,8 @@ public class Core {
         setInitialCondition(d);
         float roundD = (float) (Math.round(d * 100.0) / 100.0);
         String fileName = "" + roundD;
+
+        //Creates a picture log for that density
         if (parameters.getPictureLog() == 1) {
             picLogger = new PictureLogger(fileName, roundD);
         }
@@ -329,5 +333,33 @@ public class Core {
     public void setParameters(SimulationParameters parameters) {
         this.parameters = parameters;
     }
+
+    private void printSimulationInfo() {
+        
+        float initD = (float) (Math.round(parameters.getInitialDensity() * 100.0) / 100.0);
+        float finalD = (float) (Math.round(parameters.getFinalDensity() * 100.0) / 100.0);
+        System.out.println("-------------------------------");
+        System.out.println("--------Simulation Info--------");
+        System.out.println("-------------------------------");
+        System.out.println("Model: "+this.getModel().toString());
+        System.out.println("\nSimulation Time: "+parameters.getSimulationTime()+"s");
+        System.out.println("Discard Time: "+parameters.getDiscardTime()+"s");
+        System.out.println("Statistic Time: "+parameters.getStatisticTime()+"s");
+        System.out.println("\nCells in X: "+ parameters.getCellsInX());
+        System.out.println("Cells in Y: "+ parameters.getCellsInY());
+        System.out.println("Simulate from density "+ initD+ " to "+ finalD);
+        
+        
+        System.out.println("\nProfiles:");
+        for (int i = 0; i < profiles.size(); i++) {
+            System.out.println(i+1+" - Profile: " + profiles.get(i).toString());
+
+        }
+    }
+
+    public Model getModel() {
+        return model;
+    }
+    
 
 }
