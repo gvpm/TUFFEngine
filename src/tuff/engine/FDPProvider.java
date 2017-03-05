@@ -14,9 +14,8 @@ public abstract class FDPProvider {
         return 1;
 
     }
+
     @Override
     public abstract String toString();
-        
-    
 
 }

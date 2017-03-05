@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import processing.core.*;
 
-public class pictureLogViwer extends PApplet {
+public class PictureLogViwer extends PApplet {
 
     int rows, columns;
     int x = 1250;
@@ -18,7 +18,7 @@ public class pictureLogViwer extends PApplet {
 
     public static void main(String[] args) {
 
-        PApplet.main(new String[]{"pictureLogViwer"});
+        PApplet.main(new String[]{"PictureLogViwer"});
     }
 
     @Override
@@ -46,7 +46,7 @@ public class pictureLogViwer extends PApplet {
         } catch (FileNotFoundException ex) {
 
         } catch (IOException ex) {
-            
+
         }
 
     }
@@ -56,24 +56,24 @@ public class pictureLogViwer extends PApplet {
         background(255);
         stroke(0);
         String[] splittedLine = line.split("");
-        if(splittedLine.length>0){
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                int lineValue = Integer.parseInt(splittedLine[j]);
-                if(lineValue!=0){
-                fill(0);
-                int center = 20;
-                rect(j, center + i, 1, 1);
-                rect(j, center + i + 1, 1, 1);
-                rect(j, center + i + 2, 1, 1);
-                rect(j, center + i + 3, 1, 1);
-                rect(j, center + i + 4, 1, 1);
+        if (splittedLine.length > 0) {
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
+                    int lineValue = Integer.parseInt(splittedLine[j]);
+                    if (lineValue != 0) {
+                        fill(0);
+                        int center = 20;
+                        rect(j, center + i, 1, 1);
+                        rect(j, center + i + 1, 1, 1);
+                        rect(j, center + i + 2, 1, 1);
+                        rect(j, center + i + 3, 1, 1);
+                        rect(j, center + i + 4, 1, 1);
+                    }
+
                 }
 
             }
-
         }
-    }
 
     }
 
@@ -99,12 +99,11 @@ public class pictureLogViwer extends PApplet {
                 }
 
             }
-            
 
         } catch (FileNotFoundException ex) {
 
         } catch (IOException ex) {
-            
+
         }
 
     }

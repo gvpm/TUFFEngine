@@ -56,7 +56,6 @@ public class Core {
         dataExtractor = new DataExtractor(this);
         //Will log information 
         logger = new Logger(parameters.getLogName());
-
         //Creates the grid
         createGrid();
 
@@ -85,10 +84,14 @@ public class Core {
         //End of simulation
         System.out.println("---------------------------------------------------------------");
         System.out.println("Simulation Ended");
-        //-------------------------------LOG
+//-------------------------------------------------------------        
+//---------------------MAIN LOG RELATED------------------------
+//-------------------------------------------------------------
         //Closing the log here.
         logger.closeLogger();
-        //-------------------------------
+//-------------------------------------------------------------        
+//---------------------MAIN LOG RELATED------------------------
+//-------------------------------------------------------------
 
     }
 
@@ -100,37 +103,43 @@ public class Core {
     public void simulateDensity(float d) throws InterruptedException, ExecutionException {
         //Sets inicial condition or this density.
         setInitialCondition(d);
+        //Rounds the density 
         float roundD = (float) (Math.round(d * 100.0) / 100.0);
         String fileName = "" + roundD;
-
+//-------------------------------------------------------------        
+//---------------PICTURE LOG RELATED---------------------------
+//------------------------------------------------------------- 
         //Creates a picture log for that density
         if (parameters.getPictureLog() == 1) {
             picLogger = new PictureLogger(fileName, roundD);
         }
+//-------------------------------------------------------------        
+//---------------PICTURE LOG RELATED---------------------------
+//------------------------------------------------------------- 
 
         int simulationTime = parameters.getSimulationTime();
         int statisticTime = parameters.getStatisticTime();
         int discardTime = parameters.getDiscardTime();
         int logTimeCounter = 0;
 
-        //float lastPrinted = 0;
         //One step for each second  stated in simulation time
         for (int i = 0; i < simulationTime; i++) {
-            /*
-            int percentage = (int)(((float)i/(float)simulationTime)*(float)100);
-            if((lastPrinted != percentage)&&percentage%10==0){
-               //System.out.print(" "+percentage);
-                System.out.print("-");
-                lastPrinted = percentage;
-            }
-             */
-            iterate();
 
+            iterate();
+//-------------------------------------------------------------        
+//---------------PICTURE LOG RELATED---------------------------
+//-------------------------------------------------------------             
+            //Logs a line on pictureLogger
             if (parameters.getPictureLog() == 1) {
                 picLogger.logALine(grid.getGrid());
             }
+//-------------------------------------------------------------        
+//---------------PICTURE LOG RELATED---------------------------
+//-------------------------------------------------------------             
 
-            //LOG TIME
+//-------------------------------------------------------------        
+//---------------------MAIN LOG RELATED------------------------
+//------------------------------------------------------------- 
             //Will log every statisticTime, no logging the  initial discardTime
             if ((i > discardTime)) {
                 logTimeCounter++;
@@ -141,11 +150,21 @@ public class Core {
                 }
 
             }
+//-------------------------------------------------------------        
+//---------------------MAIN LOG RELATED------------------------
+//------------------------------------------------------------- 
 
         }
+//-------------------------------------------------------------        
+//---------------PICTURE LOG RELATED---------------------------
+//-------------------------------------------------------------         
+        //Closes the picture logger
         if (parameters.getPictureLog() == 1) {
             picLogger.closeLogger();
         }
+//-------------------------------------------------------------        
+//---------------PICTURE LOG RELATED---------------------------
+//------------------------------------------------------------- 
 
     }
 
@@ -183,15 +202,6 @@ public class Core {
         //Updates the grid
         update();
 
-//        System.out.println("");
-//        for (int i = 0; i < grid.getGrid().length; i++) {
-//            if(grid.getGrid()[i]==-1){
-//               System.out.print(" "); 
-//            }else{
-//            System.out.print("o");
-//            }
-//            
-//        }
     }
 
     /**
@@ -335,24 +345,23 @@ public class Core {
     }
 
     private void printSimulationInfo() {
-        
+
         float initD = (float) (Math.round(parameters.getInitialDensity() * 100.0) / 100.0);
         float finalD = (float) (Math.round(parameters.getFinalDensity() * 100.0) / 100.0);
         System.out.println("-------------------------------");
         System.out.println("--------Simulation Info--------");
         System.out.println("-------------------------------");
-        System.out.println("Model: "+this.getModel().toString());
-        System.out.println("\nSimulation Time: "+parameters.getSimulationTime()+"s");
-        System.out.println("Discard Time: "+parameters.getDiscardTime()+"s");
-        System.out.println("Statistic Time: "+parameters.getStatisticTime()+"s");
-        System.out.println("\nCells in X: "+ parameters.getCellsInX());
-        System.out.println("Cells in Y: "+ parameters.getCellsInY());
-        System.out.println("Simulate from density "+ initD+ " to "+ finalD);
-        
-        
+        System.out.println("Model: " + this.getModel().toString());
+        System.out.println("\nSimulation Time: " + parameters.getSimulationTime() + "s");
+        System.out.println("Discard Time: " + parameters.getDiscardTime() + "s");
+        System.out.println("Statistic Time: " + parameters.getStatisticTime() + "s");
+        System.out.println("\nCells in X: " + parameters.getCellsInX());
+        System.out.println("Cells in Y: " + parameters.getCellsInY());
+        System.out.println("Simulate from density " + initD + " to " + finalD);
+
         System.out.println("\nProfiles:");
         for (int i = 0; i < profiles.size(); i++) {
-            System.out.println(i+1+" - Profile: " + profiles.get(i).toString());
+            System.out.println(i + 1 + " - Profile: " + profiles.get(i).toString());
 
         }
     }
@@ -360,6 +369,5 @@ public class Core {
     public Model getModel() {
         return model;
     }
-    
 
 }

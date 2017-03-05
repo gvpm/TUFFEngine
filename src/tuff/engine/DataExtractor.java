@@ -25,7 +25,6 @@ public class DataExtractor {
             float velInKMH;
             velInKMH = (core.getVehicles().get(i).getVelocity()) * core.getParameters().getCellSize() * (float) 3.6;
             sum += velInKMH;
-            //sum +=core.getVehicles().get(i).getVelocity();
 
         }
 

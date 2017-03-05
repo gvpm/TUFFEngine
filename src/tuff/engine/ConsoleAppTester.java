@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutionException;
  * The console way to run the simulation.
  *
  */
-public class ConsoleApp {
+public class ConsoleAppTester {
 
     /**
      * @param args the command line arguments

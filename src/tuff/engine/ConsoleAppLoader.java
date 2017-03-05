@@ -6,12 +6,12 @@ import java.util.concurrent.ExecutionException;
 /**
  * The console way to run the simulation.
  *
+ * It runs the file given via arguments. It runs the simulation.txt if no
+ * arguments are passed.
+ *
  */
 public class ConsoleAppLoader {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) throws InterruptedException, ExecutionException, IOException {
 
         FileLoader fileLoader;
