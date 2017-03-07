@@ -82,7 +82,7 @@ public class Core {
             density = density + deltaDensity;
         }
         //End of simulation
-        System.out.println("---------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------");
         System.out.println("Simulation Ended");
 //-------------------------------------------------------------        
 //---------------------MAIN LOG RELATED------------------------
@@ -262,7 +262,7 @@ public class Core {
         float roundD = (float) (Math.round(d * 100.0) / 100.0);
         //number of cells that will be occupied in this density
         int occupiedCells = (int) (parameters.getCellsInX() * roundD);
-        System.out.println("\n---------------------------------------------------------------");
+        System.out.println("\n-----------------------------------------------------------------------------------------");
         System.out.println("Density: " + roundD + " Occupied Cells: " + occupiedCells + " out of " + parameters.getCellsInX());
         //will store here the numberof cars in this density or each profile
         int[] nOfProfileCars = new int[profiles.size()];
@@ -348,9 +348,9 @@ public class Core {
 
         float initD = (float) (Math.round(parameters.getInitialDensity() * 100.0) / 100.0);
         float finalD = (float) (Math.round(parameters.getFinalDensity() * 100.0) / 100.0);
-        System.out.println("-------------------------------");
-        System.out.println("--------Simulation Info--------");
-        System.out.println("-------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.println("Simulation Info");
+        System.out.println("-----------------------------------------------------------------------------------------");
         System.out.println("Model: " + this.getModel().toString());
         System.out.println("\nSimulation Time: " + parameters.getSimulationTime() + "s");
         System.out.println("Discard Time: " + parameters.getDiscardTime() + "s");

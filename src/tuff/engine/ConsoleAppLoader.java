@@ -15,8 +15,18 @@ public class ConsoleAppLoader {
     public static void main(String[] args) throws InterruptedException, ExecutionException, IOException {
 
         FileLoader fileLoader;
+        //case where no arguments where given
         if (args.length == 0) {
+            GUIOutputWindow frame = new GUIOutputWindow();
+            frame.setVisible(true);
+            MessageConsole mc = new MessageConsole(frame.getjTextArea1());
+            mc.redirectOut();
+
+            mc.setMessageLines(100);
+
             fileLoader = new FileLoader("simulation.txt");
+
+            //Case where arguments were given, running on prompt probably    
         } else {
             fileLoader = new FileLoader(args[0]);
         }
@@ -26,6 +36,7 @@ public class ConsoleAppLoader {
         Core core = fileLoader.getCore();
 
         core.init();
+
         core.simulateAllDensities();
 
     }

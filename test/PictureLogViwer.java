@@ -33,7 +33,7 @@ public class PictureLogViwer extends PApplet {
         background(255);
 
         try {
-            f = new FileReader("0.05.txt");
+            f = new FileReader("0.5.txt");
 
             b = new BufferedReader(f);
             eof = false;

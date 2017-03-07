@@ -1,6 +1,7 @@
 package tuff.engine;
 
 import java.util.concurrent.ExecutionException;
+import javax.swing.JTextArea;
 
 /**
  * The console way to run the simulation.
@@ -35,6 +36,11 @@ public class ConsoleAppTester {
         //core.createProfile("uniform", "Nasch Basic", 5, 25, 0, 0, 5, 1, 1, 4, 1, 4);
 
         core.init();
+
+//        JTextArea jta =  new JTextArea(); 
+//        MessageConsole mc = new MessageConsole(jta);
+//        mc.redirectOut(null, System.out);
+//        mc.setMessageLines(100);
         core.simulateAllDensities();
 
     }
