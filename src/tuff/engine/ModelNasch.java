@@ -18,7 +18,7 @@ public class ModelNasch extends Model {
         int currentVel = vehicle.getVelocity();
 
         //calculate space between vehicles
-        distanceToFront = vehicle.getDistanceToFront();
+        distanceToFront = vehicle.getDistanceToFrontAndId()[0];
 
         //Calculate new vel, addind acceleratio to vel
         newVel = min(currentVel + acceleration, vMax);

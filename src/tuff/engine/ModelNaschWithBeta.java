@@ -18,7 +18,7 @@ public class ModelNaschWithBeta extends Model {
         int currentVel = vehicle.getVelocity();
 
         //calculate space between vehicles
-        distanceToFront = vehicle.getDistanceToFront();
+        distanceToFront = vehicle.getDistanceToFrontAndId()[0];
 
         //Calculate new vel, addind acceleratio to vel
         float alpha = vehicle.getBetaFunctionAcc();

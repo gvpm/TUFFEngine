@@ -175,8 +175,8 @@ public class Vehicle {
         return getProfile().getSize();
 
     }
-
-    public int getDistanceToFront() {
+    //gives the distance to the car at front and the id
+    public int[] getDistanceToFrontAndId() {
         int pointer = grid.getNextXPosition(this.getGridXPosition());
 
         int distance = 0;
@@ -185,8 +185,11 @@ public class Vehicle {
             pointer = grid.getNextXPosition(pointer);
             distance++;
         }
-
-        return distance;
+        int[] r = new int[2];
+        r[0]=distance;
+        //car that is in that position
+        r[1]= grid.getFromPosition(pointer);
+        return r;
     }
 
     public int getVelMax() {

@@ -369,5 +369,17 @@ public class Core {
     public Model getModel() {
         return model;
     }
+    
+    public Vehicle getVehicleFromId(int id){
+        Vehicle r=null;
+        for (int i = 0; i < vehicles.size(); i++) {
+            if(vehicles.get(i).getId()== id){
+                r = vehicles.get(i);
+            }
+            
+        }
+        return r;
+        
+    }
 
 }
