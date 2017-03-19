@@ -10,22 +10,38 @@ public class ModelTUFF extends Model {
     @Override
     public void apply(Vehicle vehicle) {
         Grid grid = vehicle.getGrid();
+        
         int distanceToFront;
+        int distanceFromFrontToFront;
+        
         int newVel;
         int acceleration = vehicle.getAcceleration();
         int vMax = vehicle.getVelMax();
         int currentVel = vehicle.getVelocity();
+        
         Vehicle vehicleAtFront;
+        Vehicle vehicleAtFrontOfFront;
+        
+        int[] distanceAndId; 
 
-        //calculate space between vehicles
-        int[] distanceAndId = vehicle.getDistanceToFrontAndId(); 
+        //calculate space between the vehicle and the one to the front
+        distanceAndId = vehicle.getDistanceToFrontAndId(); 
         distanceToFront = distanceAndId[0];
         vehicleAtFront = vehicle.getCore().getVehicleFromId(distanceAndId[1]);
-
+        
+        //calculate space between the vehicle ate front and the one in front of it        
+        distanceAndId = vehicleAtFront.getDistanceToFrontAndId(); 
+        distanceFromFrontToFront = distanceAndId[0];
+        vehicleAtFrontOfFront = vehicleAtFront.getCore().getVehicleFromId(distanceAndId[1]);
+        
+        float alphaAcc = vehicle.getBetaFunctionAcc();
+        float roundAlphaAcc = (float) (Math.round(alphaAcc * 100.0) / 100.0);
+        float alphaAnt = vehicle.getBetaFunctionAnt();
+        float roundAlphaAnt = (float) (Math.round(alphaAnt * 100.0) / 100.0);
         //Calculate new vel, addind acceleratio to vel
-        float alpha = vehicle.getBetaFunctionAcc();
-        float roundA = (float) (Math.round(alpha * 100.0) / 100.0);
-        newVel = min(currentVel + (int) (acceleration * (1 - roundA)), vMax);
+        
+        
+        newVel = min(currentVel + (int) (acceleration * (1 - roundAlphaAcc)), vMax);
         //System.out.println((int)(acceleration*(1-roundA)));
 
         //Caps the new vel bases on the distance to the vehicle on the front
