@@ -18,6 +18,8 @@ public class ModelTUFF extends Model {
         int acceleration = vehicle.getAcceleration();
         int vMax = vehicle.getVelMax();
         int currentVel = vehicle.getVelocity();
+        int ahead = vehicle.getProfile().getAhead();
+        int safeDist = vehicle.getProfile().getSafeDistance();
         
         Vehicle vehicleAtFront;
         Vehicle vehicleAtFrontOfFront;
