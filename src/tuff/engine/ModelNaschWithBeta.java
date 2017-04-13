@@ -22,6 +22,7 @@ public class ModelNaschWithBeta extends Model {
 
         //Calculate new vel, addind acceleratio to vel
         float alpha = vehicle.getBetaFunctionAcc();
+        //The rounded version of the alpha calculated above
         float roundA = (float) (Math.round(alpha * 100.0) / 100.0);
         newVel = min(currentVel + (int) (acceleration * (1 - roundA)), vMax);
         //System.out.println((int)(acceleration*(1-roundA)));
