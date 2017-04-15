@@ -35,8 +35,8 @@ There are 2 ways of running the simulation.
 ## The Output.
 When you run the simulation, it will generate output files.
 There are 2 types of logs.
-- ####The Main Log
-  The main log will be created in all simulations and its name can be set in the **LOGNAME:** parameter in the configuration file. eg: `LOGNAME: plotar`
+- #### The Main Log
+  The main log will be created in all simulations and its name can be set in the **LOGNAME** parameter in the configuration file. eg: `LOGNAME: plotar`
   
   Each line of the log shows statistic information for some time(step) in the simulation, each information is separated by a space.
   
@@ -46,9 +46,12 @@ There are 2 types of logs.
   3- Average Velocity
   
   The steps there are logged are defined by some parameters in the configuration following this rules.
-  When the step of the simulation is equal to `DISCARDTIME` it will trigger a counter that will increase 1 in each step.
-  When the counter is equal to `STATISTICTIME` a line will be logged and the counter will be restarted.
-  This will happen until the end of the `SIMULATIONTIME`
+  
+  When the step of the simulation is equal to **DISCARDTIME** it will trigger a counter that will increase 1 in each step.
+  
+  When the counter is equal to **STATISTICTIME** a line will be logged and the counter will be restarted.
+  
+  This will happen until the end of the **SIMULATIONTIME**
   
  - ####The Picture Log
   
