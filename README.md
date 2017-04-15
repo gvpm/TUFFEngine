@@ -75,6 +75,8 @@ There are 2 types of logs.
 
     Each line will have a byte for all the cells in the grid. The byte will be set as **1** if the cell is occupied and **0** if the cell is not occupied.
     
+    To turn it on you need to set the **PICTURELOG** parameter in the configuration file to 1.
+    
     **WARNING** This is a dangerous log. For example, if your **SIMULATIONTIME** is set to 15000 it will generate a 150mb .txt file for each density simulated.
     
 ## The Configuration File.
