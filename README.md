@@ -41,19 +41,20 @@ There are 2 types of logs.
   Each line of the log shows statistic information for some time(step) in the simulation, each information is separated by a space.
   
   Those are the parameters you will find in all the lines:
-  1- Flow
-  2- Density
-  3- Average Velocity
   
-  The steps there are logged are defined by some parameters in the configuration following this rules.
+   1. Flow
+   2. Density
+   3. Average Velocity
   
-  When the step of the simulation is equal to **DISCARDTIME** it will trigger a counter that will increase 1 in each step.
+   The steps there are logged are defined by some parameters in the configuration following this rules.
   
-  When the counter is equal to **STATISTICTIME** a line will be logged and the counter will be restarted.
+   When the step of the simulation is equal to **DISCARDTIME** it will trigger a counter that will increase 1 in each step.
   
-  This will happen until the end of the **SIMULATIONTIME**
+   When the counter is equal to **STATISTICTIME** a line will be logged and the counter will be restarted.
+   
+   This will happen until the end of the **SIMULATIONTIME**
   
- - ####The Picture Log
+ - #### The Picture Log
   
   
   
