@@ -77,6 +77,9 @@ There are 2 types of logs.
     
     **WARNING** This is a dangerous log. For example, if your **SIMULATIONTIME** is set to 15000 it will generate a 150mb .txt file for each density simulated.
     
+## The Configuration File.
+
+  ...soon
   
   
   
