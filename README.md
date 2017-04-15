@@ -19,11 +19,11 @@ There are 2 ways of running the simulation.
   To use the simulation GUI you simply need to click on the "TUFFEngine.jar" file, a window will open and the simulation will run with the parameters set on the 'simulation.txt' file that should be in the same folder.
   
 - #### Via prompt:
-  If you want to run a configuraton file with a different name you need to run the program via prompt.
-  To do that you need to open the folder containing the files. Use `cd` command to open teh desired folder.
-  After that, use the following command to run the simulation.
-  `java -jar TUFFEngine.jar 'yourConfigFileName.txt'`
-  The file you pick should be in the same folder.
+   If you want to run a configuraton file with a different name you need to run the program via prompt.
+   To do that you need to open the folder containing the files. Use `cd` command to open teh desired folder.
+   After that, use the following command to run the simulation.
+   `java -jar TUFFEngine.jar 'yourConfigFileName.txt'`
+   The file you pick should be in the same folder.
 
   
   
