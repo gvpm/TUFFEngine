@@ -13,25 +13,24 @@ import java.util.concurrent.ExecutionException;
 public class ConsoleAppLoader {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException, IOException {
-        boolean GUI = false;
+        boolean GUI = true;
 
         FileLoader fileLoader;
 
-        if (GUI) {
-            GUIOutputWindow frame = new GUIOutputWindow();
-            frame.setVisible(true);
-            MessageConsole mc = new MessageConsole(frame.getjTextArea1());
-            mc.redirectOut();
-
-            mc.setMessageLines(100);
+        if (args.length == 0) {
 
             fileLoader = new FileLoader("simulation.txt");
 
-        } else if (args.length == 0) {
+            if (GUI) {
+                GUIOutputWindow frame = new GUIOutputWindow();
+                frame.setVisible(true);
+                MessageConsole mc = new MessageConsole(frame.getjTextArea1());
+                mc.redirectOut();
 
-            fileLoader = new FileLoader("simulation.txt");
+                mc.setMessageLines(100);
 
-            //Case where arguments were given, running on prompt probably    
+                //Case where arguments were given, running on prompt probably    
+            }
         } else {
             fileLoader = new FileLoader(args[0]);
         }
