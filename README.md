@@ -55,6 +55,16 @@ There are 2 types of logs.
    This will happen until the end of the **SIMULATIONTIME**
   
  - #### The Picture Log
+ 
+    The idea of this log is that it takes a screenshot of the road in each step of the simulation.
+    
+    It will create a .txt file for each density simulated the name will be the density value.
+
+    Each line will have a byte for all the cells in the grid. The byte will be set as **1** if the cell is occupied and **0** if the cell is not occupied.
+    
+    **WARNING** This is a dangerous log. For example, if your **SIMULATIONTIME** is set to 15000 it will generate a 150mb .txt file for each density simulated.
+    
+  
   
   
   
