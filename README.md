@@ -7,7 +7,7 @@ The first program was originally developed by Marcelo Zamith in c++.
 
 This is a netbeans project.
 
-## Running the simulation.
+## Running the Simulation.
 If you just want to run the simulation you only need the files from **TUFFEngineRun** folder.
 There you will find 2 files:
 - The "TUFFEngine.jar": The program itself.
@@ -31,6 +31,28 @@ There are 2 ways of running the simulation.
    
    The file you pick should be in the same folder.
 
+  
+## The Output.
+When you run the simulation, it will generate output files.
+There are 2 types of logs.
+- ####The Main Log
+  The main log will be created in all simulations and its name can be set in the **LOGNAME:** parameter in the configuration file. eg: `LOGNAME: plotar`
+  
+  Each line of the log shows statistic information for some time(step) in the simulation, each information is separated by a space.
+  
+  Those are the parameters you will find in all the lines:
+  1- Flow
+  2- Density
+  3- Average Velocity
+  
+  The steps there are logged are defined by some parameters in the configuration following this rules.
+  When the step of the simulation is equal to `DISCARDTIME` it will trigger a counter that will increase 1 in each step.
+  When the counter is equal to `STATISTICTIME` a line will be logged and the counter will be restarted.
+  This will happen until the end of the `SIMULATIONTIME`
+  
+ - ####The Picture Log
+  
+  
   
   
 
