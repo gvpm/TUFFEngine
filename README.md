@@ -16,9 +16,9 @@ This is a netbeans project.
   
   The simulation will run from **INITIALDENSITY** to **FINALDENSITY** and will jump **DELTADENSITY** between the densities.
   
-  Eg: **INITIALDENSITY=0.05** **FINALDENSITY=0.90** **DELTADENSITY=0.01** 
+  Eg: **INITIALDENSITY=0.05**  **FINALDENSITY=0.90**  **DELTADENSITY=0.01** 
   
-  It will simulate the dentities 0.05,0.06,0.07...0.50,0.51,0.52...0.89,0.90
+  It will simulate the dentities 0.05, 0.06, 0.07 ... 0.50, 0.51, 0.52 ... 0.89, 0.90
 
 ## Running the Simulation.
 If you just want to run the simulation you only need the files from **TUFFEngineRun** folder.
