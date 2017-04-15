@@ -7,6 +7,17 @@ The first program was originally developed by Marcelo Zamith in c++.
 
 This is a netbeans project.
 
+
+## The Simulation.
+
+  The whole simulation is actually a set of many smaller simulations. The program will do one simulation for each density you need to run.
+  
+  You can set the densities you want to run using 3 parameters in the configuration file.
+  
+  The simulation will run from **INITIALDENSITY** to **FINALDENSITY** and will jump **DELTADENSITY** between the densities.
+  
+  Eg: **INITIALDENSITY=0.05** **FINALDENSITY=0.90** **DELTADENSITY=0.01** it will simulate the dentities 0.05,0.06...0.89,0.90
+
 ## Running the Simulation.
 If you just want to run the simulation you only need the files from **TUFFEngineRun** folder.
 There you will find 2 files:
