@@ -78,8 +78,14 @@ There are 2 types of logs.
     **WARNING** This is a dangerous log. For example, if your **SIMULATIONTIME** is set to 15000 it will generate a 150mb .txt file for each density simulated.
     
 ## The Configuration File.
+  Use the program Notepad++ to open the configuration file if you have problems using it on the standard notepad.
+  
+  https://notepad-plus-plus.org/
+  
+  In the standard notepad is usually badly formated.
 
-  ...soon
+
+  More information about each parameter soon...
   
   
   
