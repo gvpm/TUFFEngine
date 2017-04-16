@@ -45,6 +45,28 @@ There are 2 ways of running the simulation.
    The file you pick should be in the same folder.
 
   
+## The Implemented Models.
+- #### Nasch With Beta
+  ```
+  //calculate space between vehicles
+  distanceToFront = vehicle.getDistanceToFrontAndId()[0];
+
+        //Calculate new vel, addind acceleratio to vel
+        float alpha = vehicle.getBetaFunctionAcc();
+        //The rounded version of the alpha calculated above
+        float roundA = (float) (Math.round(alpha * 100.0) / 100.0);
+        newVel = min(currentVel + (int) (acceleration * (1 - roundA)), vMax);
+        //System.out.println((int)(acceleration*(1-roundA)));
+
+        //Caps the new vel bases on the distance to the vehicle on the front
+        newVel = min(newVel, distanceToFront);
+
+        //sets the vehicle new vel
+        vehicle.setNewVelocity(newVel);
+  ```
+  
+
+
 ## The Output.
 When you run the simulation, it will generate output files.
 There are 2 types of logs.
