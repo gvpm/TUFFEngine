@@ -49,33 +49,32 @@ There are 2 ways of running the simulation.
 - #### Nasch With Beta
   ```
   ////This will be applied to every car in each step of the simulation.
-  
   ////Here the space between the current car and the car in front of it is calculated.
   
-  distanceToFront = vehicle.getDistanceToFrontAndId()[0];
+      distanceToFront = vehicle.getDistanceToFrontAndId()[0];
   
   ////Here the alpha is calculated, is a number between 0 and 1, it is given by the beta function.
   
-  float alpha = vehicle.getBetaFunctionAcc();
+      float alpha = vehicle.getBetaFunctionAcc();
   
   ////The rounded version of the alpha is calculated.
   
-  float roundA = (float) (Math.round(alpha * 100.0) / 100.0);
+      float roundA = (float) (Math.round(alpha * 100.0) / 100.0);
   
   ////New Velocity is calculated.
   ////The acceleration set in the cars profile is multiplied by a number between 0 and 1. 
   ////This new value is added to the current velocity of the car.
   ////There is a cap so that this new value will not be higher than the maximum velocity of the road.
   
-  newVel = min(currentVel + (int) (acceleration * (1 - roundA)), vMax);
+      newVel = min(currentVel + (int) (acceleration * (1 - roundA)), vMax);
       
   //Caps the new velocity based on the distance to the vehicle on the front
   
-  newVel = min(newVel, distanceToFront);
+      newVel = min(newVel, distanceToFront);
 
   //Sets the vehicle new velocity.
   
-  vehicle.setNewVelocity(newVel);
+      vehicle.setNewVelocity(newVel);
   ```
   
 
