@@ -17,23 +17,23 @@ public class ModelNaschWithBeta extends Model {
         int vMax = vehicle.getVelMax();
         int currentVel = vehicle.getVelocity();
 
-        //calculate space between vehicles
+        //This will be applied to every car in each step of the simulation.
+        //Here the space between the current car and the car in front of it is calculated.
         distanceToFront = vehicle.getDistanceToFrontAndId()[0];
-
-        //Calculate new vel, addind acceleratio to vel
+        //Here the alpha is calculated, is a number between 0 and 1, it is given by the beta function.
         float alpha = vehicle.getBetaFunctionAcc();
-        //The rounded version of the alpha calculated above
+        //The rounded version of the alpha is calculated.
         float roundA = (float) (Math.round(alpha * 100.0) / 100.0);
+        //New Velocity is calculated.
+        //The acceleration set in the cars profile is multiplied by a number between 0 and 1. 
+        //This new value is added to the current velocity of the car.
+        //There is a cap so that this new value will not be higher than the maximum velocity of the road.
         newVel = min(currentVel + (int) (acceleration * (1 - roundA)), vMax);
-        //System.out.println((int)(acceleration*(1-roundA)));
-
-        //Caps the new vel bases on the distance to the vehicle on the front
+        //Caps the new velocity based on the distance to the vehicle on the front
         newVel = min(newVel, distanceToFront);
-
-        //sets the vehicle new vel
+        //Sets the vehicle new velocity.
         vehicle.setNewVelocity(newVel);
 
-        //gets the new x position based on the current plus  adding new vel
         int newXPosition = grid.getNewXPostition(vehicle.getGridXPosition(), newVel);
 
         vehicle.setNewGridXPosition(newXPosition);
