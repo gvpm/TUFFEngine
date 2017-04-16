@@ -49,7 +49,7 @@ There are 2 ways of running the simulation.
 - #### Nasch With Beta
   ```
   //calculate space between vehicles
-  distanceToFront = vehicle.getDistanceToFrontAndId()[0];
+  **distanceToFront = vehicle.getDistanceToFrontAndId()[0];**
 
         //Calculate new vel, addind acceleratio to vel
         float alpha = vehicle.getBetaFunctionAcc();
