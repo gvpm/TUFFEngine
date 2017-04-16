@@ -47,7 +47,7 @@ There are 2 ways of running the simulation.
   
 ## The Implemented Models.
 - #### Nasch With Beta
-  ```
+  ```java
   ////This will be applied to every car in each step of the simulation.
   ////Here the space between the current car and the car in front of it is calculated.
   
