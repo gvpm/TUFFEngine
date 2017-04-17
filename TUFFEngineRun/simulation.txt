@@ -5,7 +5,7 @@
 //- PictureLog Value (0 will not log, 1 will log)
 //---------------------------------------------------
 SPEEDLIMIT:25
-PROBP:35
+PROBP:30
 SIMULATIONTIME:15000
 DISCARDTIME:10000
 STATISTICTIME:121
@@ -18,7 +18,7 @@ CELLSIZE:1.5
 DEFAULTCARSIZE:7.5
 MODEL:naschWithBeta
 //MODEL:tuff
-LOGNAME:plotar
+LOGNAME:comif30
 PICTURELOG:0
 ENDOFPARAMETERS
 //---------------------------------------------------
