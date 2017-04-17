@@ -27,6 +27,8 @@ public class Core {
 
     Logger logger;
     PictureLogger picLogger;
+    //This is a general FDP Uniform Provider.
+    FDPProvider generalFDPUniform;
 
     //----------------------------LOG
     FileWriter arq = null;
@@ -49,6 +51,7 @@ public class Core {
 
     //Initializes the core.
     public void init() {
+        
         //Creates the model to be applied in the cars, using a factory.
         ModelFactory modelFactory = new ModelFactory();
         model = modelFactory.fabricate(parameters.getModel());
@@ -58,6 +61,8 @@ public class Core {
         logger = new Logger(parameters.getLogName());
         //Creates the grid
         createGrid();
+        //Inits the general Uniform FDP Provider
+        generalFDPUniform = new FDPProviderUniform();
 
     }
 
@@ -379,6 +384,12 @@ public class Core {
             
         }
         return r;
+        
+    }
+    
+     public boolean provideGeneralFDPUniform(){
+     
+        return generalFDPUniform.provide((int)parameters.getProbP());
         
     }
 
