@@ -34,7 +34,7 @@ public class ModelNaschWithBeta extends Model {
         //Uses the Uniform FDP to decide if its going to use the calculated acceletarion or not.
         //Subtracts the acceletation with a probP chance of happening. probP is defined in the config file.
         if (vehicle.getCore().provideGeneralFDPUniform()) {
-            newVel = max(newVel - calculatedAcceletarion, 0);
+           newVel = max(newVel - calculatedAcceletarion, 0);
         }
         //Caps the new velocity based on the distance to the vehicle on the front
         newVel = min(newVel, distanceToFront);
