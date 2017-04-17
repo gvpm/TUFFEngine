@@ -111,15 +111,12 @@ There are 2 types of logs.
   int calculatedAcceletarion = (int) (acceleration * (1 - roundA));
 
   //New Velocity is calculated.
-
   //This new value is added to the current velocity of the car.
-
   //There is a cap so that this new value will not be higher than the maximum velocity of the road.
 
   newVel = min((currentVel + calculatedAcceletarion), vMax);
 
   //Uses the Uniform FDP to decide if its going to use the calculated acceletarion or not.
-
   //Subtracts the acceletation with a probP chance of happening. probP is defined in the config file.
 
   if (vehicle.getCore().provideGeneralFDPUniform()) {
