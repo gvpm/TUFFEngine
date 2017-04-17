@@ -5,7 +5,7 @@
 //- PictureLog Value (0 will not log, 1 will log)
 //---------------------------------------------------
 SPEEDLIMIT:25
-PROBP:35
+PROBP:30
 SIMULATIONTIME:15000
 DISCARDTIME:10000
 STATISTICTIME:121
