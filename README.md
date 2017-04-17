@@ -105,12 +105,26 @@ There are 2 types of logs.
   
   float roundA = (float) (Math.round(alpha * 100.0) / 100.0);
   
+  //The acceleration is calculated based on the alpha
+  //The acceleration set in the cars profile is multiplied by a number between 0 and 1.
+
+  int calculatedAcceletarion = (int) (acceleration * (1 - roundA));
+
   //New Velocity is calculated.
-  //The acceleration set in the cars profile is multiplied by a number between 0 and 1. 
+
   //This new value is added to the current velocity of the car.
+
   //There is a cap so that this new value will not be higher than the maximum velocity of the road.
-  
-  newVel = min(currentVel + (int) (acceleration * (1 - roundA)), vMax);
+
+  newVel = min((currentVel + calculatedAcceletarion), vMax);
+
+  //Uses the Uniform FDP to decide if its going to use the calculated acceletarion or not.
+
+  //Subtracts the acceletation with a probP chance of happening. probP is defined in the config file.
+
+  if (vehicle.getCore().provideGeneralFDPUniform()) {
+    newVel = max(newVel - calculatedAcceletarion, 0);
+  }
       
   //Caps the new velocity based on the distance to the vehicle on the front
   
