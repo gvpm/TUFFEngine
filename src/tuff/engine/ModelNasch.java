@@ -22,14 +22,16 @@ public class ModelNasch extends Model {
 
         //Calculate new vel, addind acceleratio to vel
         newVel = min(currentVel + acceleration, vMax);
+        
+        //Caps the new vel bases on the distance to the vehicle on the front
+        newVel = min(newVel, distanceToFront);
 
-        //Gets the alpha to decide if its goind to use acceletarion or not
+        //Gets the alpha to decide if its going to use acceletarion or not
         if (vehicle.getProfile().getFdpProvider().provide((int) vehicle.getCore().getParameters().getProbP())) {
             newVel = max(newVel - acceleration, 0);
 
         }
-        //Caps the new vel bases on the distance to the vehicle on the front
-        newVel = min(newVel, distanceToFront);
+        
 
         //sets the vehicle new vel
         vehicle.setNewVelocity(newVel);

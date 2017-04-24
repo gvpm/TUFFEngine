@@ -31,13 +31,14 @@ public class ModelNaschWithBeta extends Model {
         //This new value is added to the current velocity of the car.
         //There is a cap so that this new value will not be higher than the maximum velocity of the road.
         newVel = min((currentVel + calculatedAcceletarion), vMax);
+        //Caps the new velocity based on the distance to the vehicle on the front
+        newVel = min(newVel, distanceToFront);
         //Uses the Uniform FDP to decide if its going to use the calculated acceletarion or not.
         //Subtracts the acceletation with a probP chance of happening. probP is defined in the config file.
         if (vehicle.getCore().provideGeneralFDPUniform()) {
            newVel = max(newVel - calculatedAcceletarion, 0);
         }
-        //Caps the new velocity based on the distance to the vehicle on the front
-        newVel = min(newVel, distanceToFront);
+        
         //Sets the vehicle new velocity.
         vehicle.setNewVelocity(newVel);
 
