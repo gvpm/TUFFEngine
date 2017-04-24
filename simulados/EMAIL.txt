@@ -1,0 +1,57 @@
+
+a- PRIMEIRAMENTE temos que ver se o algoritmo está funcionando direitinho
+b- aí vamos rodar, para cada função beta, com p=0,01; 0,1; 0,3 e 0,7, para poder comparar com os resultados que temos.
+c- Em relação a função beta, vamos escolher 3. SE o programa estiver implementado como Delta(1-x), acho que podíamos TESTAR as   FDPs que estou enviando em anexo. Guardem esse arquivo pois podemos testar outras FDps!
+d- PROVAVELMENTE devemos fazer os seguintes graficos fluxo x densidade e velocidade x densidade. CREIO que podemos superpor os seguintes gráficos: (1) para cada p variamos as fdps beta; (2) para cada fdp beta, variamos os p's.
+
+GUILHERME, quando você fez o método de monte carlo, com os dois sorteios, não estão  os dois entre 0 e 1, certo? o x está entre 0 e 1 e o y, entre 0 e o valor máximo da função beta, certo?. SE ESTIVER ASSIM, como você encontrou esse valor máximo?
+
+IVAN e também GUILHERME, nos papers de acidentes, vamos contar, DE ALGUMA FORMA, o número de acidentes. Nos dois papers tem a "probabilidade de acidentes". Será como são contados? ACHO que deve ser o número de vezes com probabilidade de acidentes sobre o total (de tempo e carros!).
+
+Aguardo noticias, tá?
+Abs
+
+set yrange[0:2500]
+set xrange[0:100]
+set xlabel "Density"
+set ylabel "Flow"
+plot 'a1b6p70.txt' using ($2):($1) w p t "Fluxo Densidade"
+
+
+
+set yrange[0:150]
+set xrange[0:100]
+set xlabel "Density"
+set ylabel "AvgVel km/h"
+plot 'a1b6p70.txt' using ($2):($3) w p t "Velocidade/Densidade"
+
+
+java -jar TUFFEngine.jar simulation1-a8b4p1.txt
+java -jar TUFFEngine.jar simulation2-a8b4p10.txt
+java -jar TUFFEngine.jar simulation3-a8b4p30.txt
+java -jar TUFFEngine.jar simulation4-a8b4p70.txt
+
+java -jar TUFFEngine.jar simulation1-a1b6p1.txt
+java -jar TUFFEngine.jar simulation2-a1b6p10.txt
+java -jar TUFFEngine.jar simulation3-a1b6p30.txt
+java -jar TUFFEngine.jar simulation4-a1b6p70.txt
+
+java -jar TUFFEngine.jar simulation1-naschp1.txt
+java -jar TUFFEngine.jar simulation2-naschp10.txt
+java -jar TUFFEngine.jar simulation3-naschp30.txt
+java -jar TUFFEngine.jar simulation4-naschp70.txt
+
+
+set yrange[0:2500]
+set xrange[0:100]
+set xlabel "Density"
+set ylabel "Flow"
+plot 'naschp70.txt' using ($2):($1) w p t "Fluxo Densidade"
+
+
+set yrange[0:150]
+set xrange[0:100]
+set xlabel "Density"
+set ylabel "AvgVel km/h"
+plot 'naschp70.txt' using ($2):($3) w p t "Velocidade/Densidade"
+
